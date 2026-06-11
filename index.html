@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ops Performance Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root {
+  --bg:#f2f9fd;--s1:#ffffff;--s2:#f0f8fc;--border:#b8d8ee;
+  --t1:#0a1628;--t2:#2a3f6a;--t3:#6a7fa8;
+  --navy:#102060;--navy-d:rgba(16,32,96,0.08);--navy-b:rgba(16,32,96,0.22);
+  --yl:#c89000;--yl-l:#fff8d6;--yl-b:#e8c840;
+  --rd:#c83030;--rd-l:#fff0f0;--rd-b:#f0a8a8;
+  --gn:#157a52;--gn-l:#eaf7f0;--gn-b:#80d0a8;
+  --bl:#1848b8;--bl-l:#ecf2ff;--bl-b:#88aaee;
+  --or:#c85800;--or-l:#fff2e8;
+  --p1:#1848b8;--p2:#6030b8;--p3:#157a52;--p4:#c89000;--p5:#c83030;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-size:13px;line-height:1.5;}
+.hdr{background:var(--navy);border-bottom:3px solid var(--yl-b);padding:0 28px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(16,32,96,.25);}
+.h-l{display:flex;align-items:center;gap:16px;}
+.logo{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:8px;}
+.logo-bar{width:3px;height:14px;background:var(--yl-b);border-radius:2px;}
+.sep{width:1px;height:18px;background:rgba(255,255,255,.2);}
+.hsub{font-size:11px;color:rgba(255,255,255,.5);}
+.wpill{background:rgba(232,200,64,.15);border:1px solid rgba(232,200,64,.4);color:#f0d060;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+.nav{display:flex;gap:3px;}
+.nb{font-family:'Inter',sans-serif;padding:5px 13px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid transparent;background:transparent;color:rgba(255,255,255,.45);transition:all .15s;}
+.nb.on{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.22);}
+.nb:hover:not(.on){background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);}
+.main{padding:24px 28px;display:flex;flex-direction:column;gap:24px;}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);white-space:nowrap;}
+.sline{flex:1;height:1px;background:var(--border);}
+.sc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:0 1px 5px rgba(16,32,96,.07);}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.ct{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);}
+.bdg{font-size:10px;font-weight:600;padding:2px 9px;border-radius:10px;letter-spacing:.03em;}
+.b-yl{background:var(--yl-l);color:var(--yl);border:1px solid var(--yl-b);}
+.b-rd{background:var(--rd-l);color:var(--rd);border:1px solid var(--rd-b);}
+.b-bl{background:var(--bl-l);color:var(--bl);border:1px solid var(--bl-b);}
+.b-nv{background:var(--navy-d);color:var(--navy);border:1px solid var(--navy-b);}
+.div{height:1px;background:var(--border);margin:12px 0;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.mn{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;}
+.ml{font-size:11px;color:var(--t2);margin-top:3px;}
+.bl{display:flex;flex-direction:column;gap:9px;}
+.bt{display:flex;justify-content:space-between;margin-bottom:4px;}
+.bn{font-size:11px;color:var(--t2);}
+.bv{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);}
+.btr{height:6px;background:var(--s2);border-radius:3px;overflow:hidden;border:1px solid var(--border);}
+.bf{height:100%;border-radius:3px;}
+.pc{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:14px;box-shadow:0 1px 5px rgba(16,32,96,.07);position:relative;overflow:hidden;}
+.pc::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;border-radius:10px 10px 0 0;}
+.pp1::after{background:var(--p1)}.pp2::after{background:var(--p2)}.pp3::after{background:var(--p3)}.pp4::after{background:var(--p4)}.pp5::after{background:var(--p5)}
+.ph{display:flex;align-items:center;gap:8px;margin:4px 0 11px;}
+.av{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;}
+.pn{font-size:12px;font-weight:700;color:var(--t1);}
+.pr{display:flex;flex-direction:column;}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--s2);}
+.prow:last-child{border-bottom:none;}
+.plbl{font-size:11px;color:var(--t3);}
+.pval{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;}
+.tag{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:1px 7px;border-radius:4px;}
+.t-yl{background:var(--yl-l);color:var(--yl);border:1px solid var(--yl-b);}
+.t-rd{background:var(--rd-l);color:var(--rd);border:1px solid var(--rd-b);}
+.t-or{background:var(--or-l);color:var(--or);}
+.wl{display:flex;flex-direction:column;gap:10px;}
+.wr{display:flex;align-items:center;gap:8px;}
+.wn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);width:16px;flex-shrink:0;}
+.wi{flex:1;min-width:0;}
+.wname{font-size:11px;color:var(--t2);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wtr{height:4px;background:var(--s2);border-radius:2px;overflow:hidden;}
+.wf{height:4px;border-radius:2px;}
+.wc{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;width:24px;text-align:right;flex-shrink:0;}
+.wp{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);width:28px;text-align:right;flex-shrink:0;}
+.dw{display:flex;align-items:center;gap:16px;}
+.rw{position:relative;width:84px;height:84px;flex-shrink:0;}
+.rc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.rp{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;line-height:1;}
+.rs{font-size:9px;color:var(--t3);margin-top:1px;}
+.leg{display:flex;flex-direction:column;gap:8px;flex:1;}
+.lr{display:flex;align-items:center;gap:7px;}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.ln{font-size:11px;color:var(--t2);flex:1;}
+.lv{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
+.il{display:flex;flex-direction:column;gap:6px;}
+.ii{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--rd-l);border:1px solid var(--rd-b);border-radius:7px;}
+.itag{background:var(--rd);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.06em;flex-shrink:0;}
+.iid{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bl);flex-shrink:0;}
+.inm{font-size:11px;color:var(--t1);flex:1;font-weight:500;}
+.iop{font-size:10px;color:var(--t3);}
+.qt{width:100%;border-collapse:collapse;}
+.qt th{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:0 8px 10px;text-align:center;border-bottom:1px solid var(--border);}
+.qt th:first-child{text-align:left;}
+.qt td{padding:7px 8px;text-align:center;border-bottom:1px solid var(--s2);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
+.qt td:first-child{text-align:left;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:var(--t2);}
+.qt tr:last-child td{border-bottom:none;}
+.c-yl{color:var(--yl)}.c-rd{color:var(--rd)}.c-gn{color:var(--gn)}.c-bl{color:var(--bl)}.c-or{color:var(--or)}.c-dim{color:var(--t3)}.c-nv{color:var(--navy)}
+.note{font-size:10px;color:var(--t3);margin-top:8px;line-height:1.6;}
+.view{display:none;}
+.view.active{display:block;}
+.p-hdr{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--s1);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;box-shadow:0 1px 5px rgba(16,32,96,.07);}
+.p-av{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
+.p-name{font-size:18px;font-weight:700;color:var(--t1);}
+.p-stats{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap;}
+.p-stat{text-align:center;padding:5px 12px;background:var(--s2);border-radius:8px;border:1px solid var(--border);}
+.p-stat-n{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;}
+.p-stat-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:1px;}
+.sec{margin-bottom:20px;}
+.sec-empty{padding:9px 12px;font-size:11px;color:var(--t3);background:var(--s2);border:1px solid var(--border);border-radius:7px;}
+.frow{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:7px;margin-bottom:5px;}
+.frow.yl{background:var(--yl-l);border:1px solid var(--yl-b);}
+.frow.or{background:var(--or-l);border:1px solid #f0c090;}
+.frow.rd{background:var(--rd-l);border:1px solid var(--rd-b);}
+.fid{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--bl);white-space:nowrap;flex-shrink:0;}
+.fdesc{font-size:11px;color:var(--t1);flex:1;}
+.cmt-btn{margin-left:auto;padding:3px 9px;background:transparent;border:1px solid var(--or);color:var(--or);border-radius:4px;cursor:pointer;font-size:10px;white-space:nowrap;flex-shrink:0;}
+.cmt-btn:hover{background:var(--or-l);}
+.cmt-area{display:none;margin:-2px 0 8px 0;padding:10px 12px;background:#fff;border:1px solid #f0c090;border-top:none;border-radius:0 0 7px 7px;}
+.cmt-area.open{display:block;}
+.cmt-list{display:flex;flex-direction:column;gap:5px;margin-bottom:8px;}
+.cmt-item{padding:6px 10px;background:var(--s2);border-radius:5px;border:1px solid var(--border);}
+.cmt-meta{font-size:10px;color:var(--t3);margin-bottom:2px;}
+.cmt-text{font-size:11px;color:var(--t1);}
+.reply-wrap{margin-top:5px;padding-left:12px;border-left:2px solid var(--border);}
+.reply-item{font-size:10px;color:var(--t2);padding:3px 6px;background:#fff;border-radius:3px;margin-bottom:3px;}
+.reply-btn{font-size:10px;color:var(--bl);cursor:pointer;margin-top:3px;display:inline-block;}
+.reply-btn:hover{text-decoration:underline;}
+.inp-row{display:flex;gap:6px;}
+.inp-row input{flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.inp-row input:focus{border-color:var(--bl);}
+.inp-row button{padding:6px 12px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;}
+.acc-btn{width:100%;text-align:left;padding:8px 12px;background:var(--s2);border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:11px;color:var(--t2);display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
+.acc-btn .arr{font-size:9px;transition:transform .2s;}
+.acc-btn.open .arr{transform:rotate(90deg);}
+.acc-content{display:none;border:1px solid var(--border);border-top:none;border-radius:0 0 7px 7px;overflow:hidden;margin-bottom:8px;}
+.acc-content.open{display:block;}
+.atbl{width:100%;border-collapse:collapse;font-size:11px;}
+.atbl th{padding:6px 10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);border-bottom:1px solid var(--border);background:var(--s2);}
+.atbl td{padding:7px 10px;border-bottom:1px solid var(--s2);color:var(--t2);}
+.atbl tr:last-child td{border-bottom:none;}
+.atbl td:first-child{font-family:'JetBrains Mono',monospace;color:var(--bl);font-size:10px;font-weight:700;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="h-l">
+    <div class="logo"><div class="logo-bar"></div>Ops Dashboard</div>
+    <div class="sep"></div>
+    <div class="hsub">NEA Export Operations</div>
+    <div class="wpill">W24 · 2026-06-12</div>
+  </div>
+  <nav class="nav">
+    <button class="nb on" onclick="switchTab('overall',this)">Overall</button>
+    <button class="nb" onclick="switchTab('suyeon',this)">Suyeon</button>
+    <button class="nb" onclick="switchTab('eunji',this)">Eunji</button>
+    <button class="nb" onclick="switchTab('sienna',this)">Sienna</button>
+    <button class="nb" onclick="switchTab('antonia',this)">Antonia</button>
+    <button class="nb" onclick="switchTab('hyebin',this)">Hyebin</button>
+  </nav>
+</div>
+
+<div id="overall" class="view active">
+<div class="main">
+<div>
+  <div class="sh"><span class="sl">담당자별 Action Items</span><div class="sline"></div></div>
+  <div class="g5">
+    <div class="pc pp1">
+      <div class="ph"><div class="av" style="background:var(--p1)">S</div><div class="pn">Suyeon</div></div>
+      <div class="pr">
+        <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">1</span></div>
+        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">13 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">11</span></div>
+        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">2</span></div>
+      </div>
+    </div>
+    <div class="pc pp2">
+      <div class="ph"><div class="av" style="background:var(--p2)">E</div><div class="pn">Eunji</div></div>
+      <div class="pr">
+        <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">-</span></div>
+        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">21 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div>
+        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+        <div class="prow"><span class="plbl">QA</span><span class="pval c-dim">-</span></div>
+      </div>
+    </div>
+    <div class="pc pp3">
+      <div class="ph"><div class="av" style="background:var(--p3)">S</div><div class="pn">Sienna</div></div>
+      <div class="pr">
+        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div>
+        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">4 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
+        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">11</span></div>
+        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">15</span></div>
+      </div>
+    </div>
+    <div class="pc pp4">
+      <div class="ph"><div class="av" style="background:var(--p4)">A</div><div class="pn">Antonia</div></div>
+      <div class="pr">
+        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">7 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
+        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-dim">-</span></div>
+        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span> <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+        <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 4</span></div>
+        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">8</span></div>
+      </div>
+    </div>
+    <div class="pc pp5">
+      <div class="ph"><div class="av" style="background:var(--p5)">H</div><div class="pn">Hyebin</div></div>
+      <div class="pr">
+        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">3</span></div>
+        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">12 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
+        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">9 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
+        <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 3</span></div>
+        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">1</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:8px;font-size:10px;color:var(--t3)">🟡 Exception/Snooze 달아야 할 것 &nbsp;·&nbsp; 🟠 코멘트 필요 &nbsp;·&nbsp; 🔴 오늘 처리 필요</div>
+</div>
+
+<div>
+  <div class="sh"><span class="sl">OTE — Transit Performance</span><div class="sline"></div><span class="sc">14건</span></div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch"><span class="ct">전체 현황</span><span class="bdg b-nv">14건 · Avg 4.5일</span></div>
+      <div style="display:flex;gap:24px;margin-bottom:14px">
+        <div><div class="mn c-nv">14</div><div class="ml">Late Shipments</div></div>
+        <div><div class="mn c-yl">4</div><div class="ml">🟡 Exception 필요</div></div>
+      </div>
+      <div class="div"></div>
+      <div class="bl" style="margin-top:10px">
+        <div><div class="bt"><span class="bn">Ocean FCL</span><span class="bv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Ocean LCL</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:27.3%;background:var(--p2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">Transit Process별</span></div>
+      <div class="bl">
+        <div><div class="bt"><span class="bn">origin_pickup_to_port</span><span class="bv">7</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--yl)"></div></div></div>
+        <div><div class="bt"><span class="bn">first_port_dwell</span><span class="bv">6</span></div><div class="btr"><div class="bf" style="width:85.7%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">lcl_consolidation_processing</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:14.3%;background:var(--t3)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">담당자별</span></div>
+      <div class="bl">
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-rd">7 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div><div class="btr"><div class="bf" style="width:42.8%;background:var(--p3)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:42.8%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:14.3%;background:var(--p1)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="sh"><span class="sl">Overdue WI</span><div class="sline"></div><span class="sc">73건</span></div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">73건</span></div>
+      <div class="bl">
+        <div><div class="bt"><span class="bn">Eunji</span><span class="bv c-rd">21 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p2)"></div></div></div>
+        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-rd">13 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:61.9%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv c-rd">12 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:57.1%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">4 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:19%;background:var(--p3)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-dim">-</span></div><div class="btr"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">WI 유형 Top 3</span><span style="font-size:10px;color:var(--t3)">Top 3 = 53%</span></div>
+      <div class="wl">
+        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Collect Export Shipper Invoice Payment</div><div class="wtr"><div class="wf" style="width:100%;background:var(--rd)"></div></div></div><span class="wc c-rd">26</span><span class="wp">36%</span></div>
+        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Submit Korea Export Cargo Manifest</div><div class="wtr"><div class="wf" style="width:26.9%;background:var(--or)"></div></div></div><span class="wc c-or">7</span><span class="wp">10%</span></div>
+        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Issue Export Shipper Invoice</div><div class="wtr"><div class="wf" style="width:19.2%;background:var(--yl)"></div></div></div><span class="wc c-yl">5</span><span class="wp">7%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">Snooze & Controllable</span></div>
+      <div style="display:flex;gap:16px;margin-bottom:14px">
+        <div><div class="mn c-gn" style="font-size:26px">100%</div><div class="ml">Snoozed (72/72)</div></div>
+        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-dim" style="font-size:26px">-</div><div class="ml">Unsnoozed</div></div>
+      </div>
+      <div class="div"></div>
+      <div class="ch" style="margin-top:10px;margin-bottom:10px"><span class="ct">Controllable vs Uncontrollable</span></div>
+      <div class="dw">
+        <div class="rw">
+          <svg viewBox="0 0 84 84" width="84" height="84">
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--s2)" stroke-width="9"/>
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--gn)" stroke-width="9" stroke-dasharray="181.9 201.1" stroke-dashoffset="50.3" stroke-linecap="round"/>
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--rd)" stroke-width="9" stroke-dasharray="19.5 201.1" stroke-dashoffset="-131.6" stroke-linecap="round"/>
+          </svg>
+          <div class="rc"><div class="rp c-gn">90%</div><div class="rs">Unctrl</div></div>
+        </div>
+        <div class="leg">
+          <div class="lr"><div class="ld" style="background:var(--gn)"></div><span class="ln">Uncontrollable</span><span class="lv c-gn">66</span></div>
+          <div class="lr"><div class="ld" style="background:var(--rd)"></div><span class="ln">Controllable</span><span class="lv c-rd">7</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="sh"><span class="sl">WI Performance</span><div class="sline"></div><span class="sc">43건</span></div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-yl">43건</span></div>
+      <div class="bl">
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv c-nv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p3)"></div></div></div>
+        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-nv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">9 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:81.8%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span> <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:54.5%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Eunji</span><span class="bv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div><div class="btr"><div class="bf" style="width:54.5%;background:var(--p2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">WI 유형별 Top 4</span></div>
+      <div class="wl">
+        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Release House Bill</div><div class="wtr"><div class="wf" style="width:100%;background:var(--yl)"></div></div></div><span class="wc c-yl">13</span><span class="wp">30%</span></div>
+        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Place Carrier Booking</div><div class="wtr"><div class="wf" style="width:84.6%;background:var(--bl)"></div></div></div><span class="wc c-bl">11</span><span class="wp">26%</span></div>
+        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Send Carrier SO to Shipper</div><div class="wtr"><div class="wf" style="width:46.2%;background:var(--p2)"></div></div></div><span class="wc" style="color:var(--p2)">6</span><span class="wp">14%</span></div>
+        <div class="wr"><span class="wn">#4</span><div class="wi"><div class="wname">Upload ISF Worksheet</div><div class="wtr"><div class="wf" style="width:46.2%;background:var(--gn)"></div></div></div><span class="wc c-gn">6</span><span class="wp">14%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">Snooze & Controllable</span></div>
+      <div style="display:flex;gap:16px;margin-bottom:14px">
+        <div><div class="mn c-gn" style="font-size:26px">86%</div><div class="ml">Snoozed (37/43)</div></div>
+        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-yl" style="font-size:26px">6</div><div class="ml">Unsnoozed</div></div>
+      </div>
+      <div class="div"></div>
+      <div class="ch" style="margin-top:10px;margin-bottom:10px"><span class="ct">Controllable vs Uncontrollable</span></div>
+      <div class="dw">
+        <div class="rw">
+          <svg viewBox="0 0 84 84" width="84" height="84">
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--s2)" stroke-width="9"/>
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--gn)" stroke-width="9" stroke-dasharray="201.1 201.1" stroke-dashoffset="50.3" stroke-linecap="round"/>
+          </svg>
+          <div class="rc"><div class="rp c-gn">100%</div><div class="rs">Unctrl</div></div>
+        </div>
+        <div class="leg">
+          <div class="lr"><div class="ld" style="background:var(--gn)"></div><span class="ln">Uncontrollable</span><span class="lv c-gn">37</span></div>
+          <div class="lr"><div class="ld" style="background:var(--rd)"></div><span class="ln">Controllable</span><span class="lv c-dim">-</span></div>
+          <div class="note">Unsnoozed 6건 제외 기준</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="sh"><span class="sl">ISF</span><div class="sline"></div><span class="sc">7건</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">7건</span></div>
+      <div class="bl">
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv">4</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:75%;background:var(--p5)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">오늘 처리 필요</span><span class="bdg b-rd">🔴 6건</span></div>
+      <div class="il">
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3915754</div><div class="inm">IFC Floors LLC</div><div class="iop">Antonia</div></div>
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3915752</div><div class="inm">IFC Floors LLC</div><div class="iop">Antonia</div></div>
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3933690</div><div class="inm">Hey Mane</div><div class="iop">Antonia</div></div>
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3908325</div><div class="inm">BRONDELL, INC.</div><div class="iop">Hyebin</div></div>
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3949413</div><div class="inm">US Joiner LLC</div><div class="iop">Hyebin</div></div>
+        <div class="ii"><div class="itag">TODAY</div><div class="iid">3952846</div><div class="inm">SOLE</div><div class="iop">Hyebin</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="sh"><span class="sl">QA — FCL 23건 · LCL 4건</span><div class="sline"></div><span class="sc">총 27건</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><span class="ct">FCL QA</span><span class="bdg b-bl">23건</span></div>
+      <table class="qt"><thead><tr><th>담당자</th><th>합계</th></tr></thead><tbody>
+        <tr><td>Sienna</td><td class="c-nv" style="font-weight:700">13</td></tr>
+        <tr><td>Antonia</td><td class="c-nv" style="font-weight:700">7</td></tr>
+        <tr><td>Suyeon</td><td class="c-nv" style="font-weight:700">2</td></tr>
+        <tr><td>Hyebin</td><td class="c-dim">-</td></tr>
+        <tr><td>Eunji</td><td class="c-dim">-</td></tr>
+      </tbody></table>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">LCL QA</span><span class="bdg b-bl">4건</span></div>
+      <table class="qt"><thead><tr><th>담당자</th><th>합계</th></tr></thead><tbody>
+        <tr><td>Sienna</td><td class="c-nv" style="font-weight:700">2</td></tr>
+        <tr><td>Antonia</td><td class="c-nv" style="font-weight:700">1</td></tr>
+        <tr><td>Hyebin</td><td class="c-nv" style="font-weight:700">1</td></tr>
+        <tr><td>Suyeon</td><td class="c-dim">-</td></tr>
+        <tr><td>Eunji</td><td class="c-dim">-</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
