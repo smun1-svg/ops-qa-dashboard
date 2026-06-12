@@ -1087,8 +1087,85 @@ function toggleCmt(id, btn) {
   btn.textContent = isOpen ? '✕ 닫기' : '💬 코멘트';
 }
 
-// Comment storage
-const cmtStore = {};
+// ── JSONBin 공유 저장소 ──
+const JSONBIN_API_KEY = '$2a$10$n0h9BayoKL/fS6/Ll.PGyuqnwsv6wPh8uTUGxsfREsIwJ9H8Ffw3C';
+const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
+let BIN_ID = localStorage.getItem('ops-bin-id') || null;
+let cmtStore = {};
+let completeState = {};
+let memoStore = {};
+let saveTimer = null;
+
+async function initBin() {
+  if (BIN_ID) {
+    // 기존 bin 불러오기
+    try {
+      const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, {
+        headers: {'X-Master-Key': JSONBIN_API_KEY}
+      });
+      const data = await res.json();
+      const rec = data.record || {};
+      cmtStore = rec.cmtStore || {};
+      completeState = rec.completeState || {};
+      memoStore = rec.memoStore || {};
+    } catch(e) { console.error('bin load error', e); }
+  } else {
+    // 새 bin 생성
+    try {
+      const res = await fetch(JSONBIN_BASE, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_API_KEY,
+          'X-Bin-Name': 'ops-dashboard'
+        },
+        body: JSON.stringify({cmtStore:{}, completeState:{}, memoStore:{}})
+      });
+      const data = await res.json();
+      BIN_ID = data.metadata.id;
+      localStorage.setItem('ops-bin-id', BIN_ID);
+    } catch(e) { console.error('bin create error', e); }
+  }
+  restoreUI();
+}
+
+function restoreUI() {
+  // 코멘트 복원
+  Object.keys(cmtStore).forEach(key => renderCmts(key));
+  // Complete 상태 복원
+  Object.entries(completeState).forEach(([secId, done]) => {
+    if (!done) return;
+    const sec = document.getElementById(secId);
+    if (!sec) return;
+    sec.classList.add('completed');
+    const btn = sec.querySelector('.complete-btn');
+    if (btn) { btn.textContent = '✓ 완료됨'; btn.classList.add('done'); }
+  });
+  // 메모 복원
+  ['suyeon','eunji','sienna','antonia','hyebin'].forEach(p => {
+    const ta = document.getElementById('memo-' + p);
+    if (ta) ta.value = memoStore[p] || '';
+  });
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(pushSave, 800);
+}
+
+async function pushSave() {
+  if (!BIN_ID) return;
+  try {
+    await fetch(`${JSONBIN_BASE}/${BIN_ID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_API_KEY
+      },
+      body: JSON.stringify({cmtStore, completeState, memoStore})
+    });
+  } catch(e) { console.error('bin save error', e); }
+}
 
 function addCmt(key) {
   const inp = document.getElementById('inp-' + key);
@@ -1098,6 +1175,7 @@ function addCmt(key) {
   const now = new Date().toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
   cmtStore[key].push({text, time: now, replies: []});
   inp.value = '';
+  scheduleSave();
   renderCmts(key);
 }
 
@@ -1108,6 +1186,7 @@ function addReply(key, idx) {
   const now = new Date().toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
   cmtStore[key][idx].replies.push({text, time: now});
   inp.value = '';
+  scheduleSave();
   renderCmts(key);
 }
 
@@ -1118,26 +1197,24 @@ function completeSection(secId, btn) {
   const done = sec.classList.contains('completed');
   btn.textContent = done ? '✓ 완료됨' : '✓ Complete';
   btn.classList.toggle('done', done);
+  completeState[secId] = done;
+  scheduleSave();
 }
 
-// Memo storage (sessionStorage)
 function saveMemo(person) {
   const ta = document.getElementById('memo-' + person);
   const saved = document.getElementById('memo-saved-' + person);
   if (!ta) return;
-  sessionStorage.setItem('memo-' + person, ta.value);
+  memoStore[person] = ta.value;
+  scheduleSave();
   saved.style.display = 'block';
   clearTimeout(ta._t);
   ta._t = setTimeout(() => saved.style.display = 'none', 1500);
 }
 
-// Load memos on init
-window.addEventListener('DOMContentLoaded', () => {
-  ['suyeon','eunji','sienna','antonia','hyebin'].forEach(p => {
-    const ta = document.getElementById('memo-' + p);
-    if (ta) ta.value = sessionStorage.getItem('memo-' + p) || '';
-  });
-});
+window.addEventListener('DOMContentLoaded', () => initBin());
+
+
 
 function renderCmts(key) {
   const list = document.getElementById('cmt-list-' + key);
