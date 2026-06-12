@@ -1090,42 +1090,23 @@ function toggleCmt(id, btn) {
 // ── JSONBin 공유 저장소 ──
 const JSONBIN_API_KEY = '$2a$10$n0h9BayoKL/fS6/Ll.PGyuqnwsv6wPh8uTUGxsfREsIwJ9H8Ffw3C';
 const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
-let BIN_ID = localStorage.getItem('ops-bin-id') || null;
+const BIN_ID = '6a2b5cf9da38895dfeb1da5a';
 let cmtStore = {};
 let completeState = {};
 let memoStore = {};
 let saveTimer = null;
 
 async function initBin() {
-  if (BIN_ID) {
-    // 기존 bin 불러오기
-    try {
-      const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, {
-        headers: {'X-Master-Key': JSONBIN_API_KEY}
-      });
-      const data = await res.json();
-      const rec = data.record || {};
-      cmtStore = rec.cmtStore || {};
-      completeState = rec.completeState || {};
-      memoStore = rec.memoStore || {};
-    } catch(e) { console.error('bin load error', e); }
-  } else {
-    // 새 bin 생성
-    try {
-      const res = await fetch(JSONBIN_BASE, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': JSONBIN_API_KEY,
-          'X-Bin-Name': 'ops-dashboard'
-        },
-        body: JSON.stringify({cmtStore:{}, completeState:{}, memoStore:{}})
-      });
-      const data = await res.json();
-      BIN_ID = data.metadata.id;
-      localStorage.setItem('ops-bin-id', BIN_ID);
-    } catch(e) { console.error('bin create error', e); }
-  }
+  try {
+    const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, {
+      headers: {'X-Master-Key': JSONBIN_API_KEY}
+    });
+    const data = await res.json();
+    const rec = data.record || {};
+    cmtStore = rec.cmtStore || {};
+    completeState = rec.completeState || {};
+    memoStore = rec.memoStore || {};
+  } catch(e) { console.error('bin load error', e); }
   restoreUI();
 }
 
