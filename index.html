@@ -155,6 +155,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .inp-row input{flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
 .inp-row input:focus{border-color:var(--bl);}
 .inp-row button{padding:6px 12px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;}
+.del-btn{font-size:9px;color:var(--rd);cursor:pointer;margin-left:6px;opacity:.7;font-weight:600;}
+.del-btn:hover{opacity:1;text-decoration:underline;}
 
 /* ── Accordion (plain list) ── */
 .acc-btn{width:100%;text-align:left;padding:8px 12px;background:var(--s2);border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:11px;color:var(--t2);display:flex;align-items:center;justify-content:space-between;margin-bottom:0;margin-top:4px;}
@@ -1195,17 +1197,34 @@ window.addEventListener('DOMContentLoaded', () => initBin());
 
 
 
+function delCmt(key, idx) {
+  if (!confirm('코멘트를 삭제할까요?')) return;
+  cmtStore[key].splice(idx, 1);
+  pushSave();
+  renderCmts(key);
+}
+
+function delReply(key, idx, ri) {
+  if (!confirm('답글을 삭제할까요?')) return;
+  cmtStore[key][idx].replies.splice(ri, 1);
+  pushSave();
+  renderCmts(key);
+}
+
 function renderCmts(key) {
   const list = document.getElementById('cmt-list-' + key);
   if (!list) return;
   list.innerHTML = '';
   (cmtStore[key] || []).forEach((c, i) => {
     const replies = (c.replies || []).map((r, ri) =>
-      `<div class="reply-item"><div class="reply-meta">${r.time}</div>${r.text}</div>`
+      `<div class="reply-item">
+        <div class="reply-meta">${r.time} <span class="del-btn" onclick="delReply('${key}',${i},${ri})">✕</span></div>
+        ${r.text}
+      </div>`
     ).join('');
     list.innerHTML += `
       <div class="cmt-item">
-        <div class="cmt-meta">${c.time}</div>
+        <div class="cmt-meta">${c.time} <span class="del-btn" onclick="delCmt('${key}',${i})">✕ 삭제</span></div>
         <div class="cmt-text">${c.text}</div>
         <div class="reply-wrap">${replies}
           <div class="reply-inp-row">
