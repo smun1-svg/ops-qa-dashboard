@@ -1129,15 +1129,9 @@ function restoreUI() {
   });
 }
 
-function scheduleSave() {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(pushSave, 800);
-}
-
 async function pushSave() {
-  if (!BIN_ID) return;
   try {
-    await fetch(`${JSONBIN_BASE}/${BIN_ID}`, {
+    const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -1145,8 +1139,12 @@ async function pushSave() {
       },
       body: JSON.stringify({cmtStore, completeState, memoStore})
     });
+    const d = await res.json();
+    console.log('saved', d.metadata);
   } catch(e) { console.error('bin save error', e); }
 }
+
+function scheduleSave() { pushSave(); }
 
 function addCmt(key) {
   const inp = document.getElementById('inp-' + key);
