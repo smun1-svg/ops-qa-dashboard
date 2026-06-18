@@ -7,17 +7,7 @@
 <title>Ops Performance Dashboard</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-:root {
-  --bg:#f2f9fd;--s1:#ffffff;--s2:#f0f8fc;--border:#b8d8ee;
-  --t1:#0a1628;--t2:#2a3f6a;--t3:#6a7fa8;
-  --navy:#102060;--navy-d:rgba(16,32,96,0.08);--navy-b:rgba(16,32,96,0.22);
-  --yl:#c89000;--yl-l:#fff8d6;--yl-b:#e8c840;
-  --rd:#c83030;--rd-l:#fff0f0;--rd-b:#f0a8a8;
-  --gn:#157a52;--gn-l:#eaf7f0;--gn-b:#80d0a8;
-  --bl:#1848b8;--bl-l:#ecf2ff;--bl-b:#88aaee;
-  --or:#c85800;--or-l:#fff2e8;--or-b:#f0c090;
-  --p1:#1848b8;--p2:#6030b8;--p3:#157a52;--p4:#c89000;--p5:#c83030;
-}
+:root{--bg:#f2f9fd;--s1:#ffffff;--s2:#f0f8fc;--border:#b8d8ee;--t1:#0a1628;--t2:#2a3f6a;--t3:#6a7fa8;--navy:#102060;--navy-d:rgba(16,32,96,0.08);--navy-b:rgba(16,32,96,0.22);--yl:#c89000;--yl-l:#fff8d6;--yl-b:#e8c840;--rd:#c83030;--rd-l:#fff0f0;--rd-b:#f0a8a8;--gn:#157a52;--gn-l:#eaf7f0;--gn-b:#80d0a8;--bl:#1848b8;--bl-l:#ecf2ff;--bl-b:#88aaee;--or:#c85800;--or-l:#fff2e8;--or-b:#f0c090;--p1:#1848b8;--p2:#6030b8;--p3:#157a52;--p4:#c89000;--p5:#c83030;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-size:13px;line-height:1.5;}
 .hdr{background:var(--navy);border-bottom:3px solid var(--yl-b);padding:0 28px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(16,32,96,.25);}
@@ -105,10 +95,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .qt tr:last-child td{border-bottom:none;}
 .c-yl{color:var(--yl)}.c-rd{color:var(--rd)}.c-gn{color:var(--gn)}.c-bl{color:var(--bl)}.c-or{color:var(--or)}.c-dim{color:var(--t3)}.c-nv{color:var(--navy)}
 .note{font-size:10px;color:var(--t3);margin-top:8px;line-height:1.6;}
-.view{display:none;}
-.view.active{display:block;}
-
-/* ── Personal Tab Layout ── */
+.view{display:none;}.view.active{display:block;}
 .p-hdr{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--s1);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;box-shadow:0 1px 5px rgba(16,32,96,.07);}
 .p-av{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
 .p-name{font-size:18px;font-weight:700;color:var(--t1);}
@@ -120,23 +107,18 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .sec-title{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
 .empty-sec{padding:9px 12px;font-size:11px;color:var(--t3);background:var(--s2);border:1px solid var(--border);border-radius:7px;}
-
-/* ── Flag rows ── */
 .frow{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;margin-bottom:5px;}
 .frow.yl{background:var(--yl-l);border:1px solid var(--yl-b);}
 .frow.or{background:var(--or-l);border:1px solid var(--or-b);}
 .frow.rd{background:var(--rd-l);border:1px solid var(--rd-b);}
+.frow.plain{background:var(--s1);border:1px solid var(--border);}
 .fid{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--bl);white-space:nowrap;flex-shrink:0;padding-top:1px;}
 .fdesc{font-size:11px;color:var(--t1);flex:1;}
 .fmeta{font-size:10px;color:var(--t3);margin-top:2px;}
 .flag-label{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.06em;flex-shrink:0;margin-top:1px;}
-.fl-yl{background:var(--yl);color:#fff;}
-.fl-or{background:var(--or);color:#fff;}
-.fl-rd{background:var(--rd);color:#fff;}
+.fl-yl{background:var(--yl);color:#fff;}.fl-or{background:var(--or);color:#fff;}.fl-rd{background:var(--rd);color:#fff;}
 .cmt-btn{margin-left:auto;padding:3px 9px;background:transparent;border:1px solid var(--or);color:var(--or);border-radius:4px;cursor:pointer;font-size:10px;white-space:nowrap;flex-shrink:0;}
 .cmt-btn:hover{background:var(--or-l);}
-
-/* ── Comment area ── */
 .cmt-wrap{margin:-3px 0 8px 0;}
 .cmt-area{display:none;padding:10px 12px;background:#fff;border:1px solid var(--or-b);border-top:none;border-radius:0 0 7px 7px;}
 .cmt-area.open{display:block;}
@@ -157,8 +139,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .inp-row button{padding:6px 12px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;}
 .del-btn{font-size:9px;color:var(--rd);cursor:pointer;margin-left:6px;opacity:.7;font-weight:600;}
 .del-btn:hover{opacity:1;text-decoration:underline;}
-
-/* ── Accordion (plain list) ── */
 .acc-btn{width:100%;text-align:left;padding:8px 12px;background:var(--s2);border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:11px;color:var(--t2);display:flex;align-items:center;justify-content:space-between;margin-bottom:0;margin-top:4px;}
 .acc-btn .arr{font-size:9px;transition:transform .2s;}
 .acc-btn.open .arr{transform:rotate(90deg);}
@@ -169,16 +149,29 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .atbl td{padding:7px 10px;border-bottom:1px solid var(--s2);color:var(--t2);}
 .atbl tr:last-child td{border-bottom:none;}
 .atbl td:first-child{font-family:'JetBrains Mono',monospace;color:var(--bl);font-size:10px;font-weight:700;}
+.sec-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.sec-title-row .sec-title{margin-bottom:0;}
+.complete-btn{padding:4px 12px;background:transparent;border:1px solid var(--gn);color:var(--gn);border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.complete-btn:hover{background:var(--gn-l);}
+.complete-btn.done{background:var(--gn);color:#fff;border-color:var(--gn);cursor:default;}
+.p-sec.completed{opacity:.55;}
+.p-sec.completed .frow{background:var(--gn-l)!important;border-color:var(--gn-b)!important;}
+.memo-box{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:0 1px 5px rgba(16,32,96,.07);margin-top:8px;}
+.memo-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.memo-title::before{content:'📝';font-size:12px;}
+.memo-area{width:100%;min-height:80px;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:'Inter',sans-serif;color:var(--t1);resize:vertical;outline:none;line-height:1.6;}
+.memo-area:focus{border-color:var(--bl);}
+.memo-saved{font-size:10px;color:var(--gn);margin-top:5px;display:none;}
+.qa-tbl-wrap{border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-top:4px;}
 </style>
 </head>
 <body>
-
 <div class="hdr">
   <div class="h-l">
     <div class="logo"><div class="logo-bar"></div>Ops Dashboard</div>
     <div class="sep"></div>
     <div class="hsub">NEA Export Operations</div>
-    <div class="wpill">W24 · 2026-06-12</div>
+    <div class="wpill">W25 · 2026-06-18</div>
   </div>
   <nav class="nav">
     <button class="nb on" onclick="switchTab('overall',this)">Overall</button>
@@ -190,124 +183,101 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
   </nav>
 </div>
 
-<!-- ══ OVERALL ══ -->
-<div id="overall" class="view active">
-<div class="main">
+<!-- OVERALL -->
+<div id="overall" class="view active"><div class="main">
 <div>
   <div class="sh"><span class="sl">담당자별 Action Items</span><div class="sline"></div></div>
   <div class="g5">
-    <div class="pc pp1">
-      <div class="ph"><div class="av" style="background:var(--p1)">S</div><div class="pn">Suyeon</div></div>
-      <div class="pr">
-        <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">1</span></div>
-        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">13 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
-        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">11</span></div>
-        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
-        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">2</span></div>
-      </div>
-    </div>
-    <div class="pc pp2">
-      <div class="ph"><div class="av" style="background:var(--p2)">E</div><div class="pn">Eunji</div></div>
-      <div class="pr">
-        <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">-</span></div>
-        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">21 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
-        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div>
-        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
-        <div class="prow"><span class="plbl">QA</span><span class="pval c-dim">-</span></div>
-      </div>
-    </div>
-    <div class="pc pp3">
-      <div class="ph"><div class="av" style="background:var(--p3)">S</div><div class="pn">Sienna</div></div>
-      <div class="pr">
-        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div>
-        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">4 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
-        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">11</span></div>
-        <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
-        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">15</span></div>
-      </div>
-    </div>
-    <div class="pc pp4">
-      <div class="ph"><div class="av" style="background:var(--p4)">A</div><div class="pn">Antonia</div></div>
-      <div class="pr">
-        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">7 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
-        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-dim">-</span></div>
-        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span> <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
-        <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 4</span></div>
-        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">8</span></div>
-      </div>
-    </div>
-    <div class="pc pp5">
-      <div class="ph"><div class="av" style="background:var(--p5)">H</div><div class="pn">Hyebin</div></div>
-      <div class="pr">
-        <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">3</span></div>
-        <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">12 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
-        <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">9 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
-        <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 3</span></div>
-        <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">1</span></div>
-      </div>
-    </div>
+    <div class="pc pp1"><div class="ph"><div class="av" style="background:var(--p1)">S</div><div class="pn">Suyeon</div></div><div class="pr">
+      <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">-</span></div>
+      <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">15 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
+      <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">4</span></div>
+      <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+      <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">2</span></div>
+    </div></div>
+    <div class="pc pp2"><div class="ph"><div class="av" style="background:var(--p2)">E</div><div class="pn">Eunji</div></div><div class="pr">
+      <div class="prow"><span class="plbl">OTE</span><span class="pval c-dim">-</span></div>
+      <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">25 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+      <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div>
+      <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+      <div class="prow"><span class="plbl">QA</span><span class="pval c-dim">-</span></div>
+    </div></div>
+    <div class="pc pp3"><div class="ph"><div class="av" style="background:var(--p3)">S</div><div class="pn">Sienna</div></div><div class="pr">
+      <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">1 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
+      <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">10</span></div>
+      <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">1</span></div>
+      <div class="prow"><span class="plbl">ISF</span><span class="pval c-dim">-</span></div>
+      <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">18</span></div>
+    </div></div>
+    <div class="pc pp4"><div class="ph"><div class="av" style="background:var(--p4)">A</div><div class="pn">Antonia</div></div><div class="pr">
+      <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">4 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div>
+      <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">16 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div>
+      <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">4</span></div>
+      <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 1</span></div>
+      <div class="prow"><span class="plbl">QA</span><span class="pval c-nv">11</span></div>
+    </div></div>
+    <div class="pc pp5"><div class="ph"><div class="av" style="background:var(--p5)">H</div><div class="pn">Hyebin</div></div><div class="pr">
+      <div class="prow"><span class="plbl">OTE</span><span class="pval c-nv">1 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div>
+      <div class="prow"><span class="plbl">Overdue WI</span><span class="pval c-nv">9 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+      <div class="prow"><span class="plbl">WI Perf</span><span class="pval c-nv">3 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div>
+      <div class="prow"><span class="plbl">ISF</span><span class="tag t-rd">🔴 2</span></div>
+      <div class="prow"><span class="plbl">QA</span><span class="pval c-dim">-</span></div>
+    </div></div>
   </div>
   <div style="margin-top:8px;font-size:10px;color:var(--t3)">🟡 Exception/Snooze 달아야 할 것 &nbsp;·&nbsp; 🟠 코멘트 필요 &nbsp;·&nbsp; 🔴 오늘 처리 필요</div>
 </div>
 <div>
-  <div class="sh"><span class="sl">OTE — Transit Performance</span><div class="sline"></div><span class="sc">14건</span></div>
+  <div class="sh"><span class="sl">OTE — Transit Performance</span><div class="sline"></div><span class="sc">5건</span></div>
   <div class="g3">
-    <div class="card">
-      <div class="ch"><span class="ct">전체 현황</span><span class="bdg b-nv">14건 · Avg 4.5일</span></div>
+    <div class="card"><div class="ch"><span class="ct">전체 현황</span><span class="bdg b-nv">5건</span></div>
       <div style="display:flex;gap:24px;margin-bottom:14px">
-        <div><div class="mn c-nv">14</div><div class="ml">Late Shipments</div></div>
-        <div><div class="mn c-yl">4</div><div class="ml">🟡 Exception 필요</div></div>
+        <div><div class="mn c-nv">5</div><div class="ml">Late Shipments</div></div>
+        <div><div class="mn c-yl">5</div><div class="ml">🟡 Exception 필요</div></div>
       </div>
       <div class="div"></div>
       <div class="bl2" style="margin-top:10px">
-        <div><div class="bt"><span class="bn">Ocean FCL</span><span class="bv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
-        <div><div class="bt"><span class="bn">Ocean LCL</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:27.3%;background:var(--p2)"></div></div></div>
+        <div><div class="bt"><span class="bn">Ocean FCL</span><span class="bv">5</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">Transit Process별</span></div>
+    <div class="card"><div class="ch"><span class="ct">Transit Process별</span></div>
       <div class="bl2">
-        <div><div class="bt"><span class="bn">origin_pickup_to_port</span><span class="bv">7</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--yl)"></div></div></div>
-        <div><div class="bt"><span class="bn">first_port_dwell</span><span class="bv">6</span></div><div class="btr"><div class="bf" style="width:85.7%;background:var(--p1)"></div></div></div>
-        <div><div class="bt"><span class="bn">lcl_consolidation_processing</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:14.3%;background:var(--t3)"></div></div></div>
+        <div><div class="bt"><span class="bn">origin_pickup_to_port</span><span class="bv">4</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--yl)"></div></div></div>
+        <div><div class="bt"><span class="bn">first_port_dwell</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:25%;background:var(--p1)"></div></div></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">담당자별</span></div>
+    <div class="card"><div class="ch"><span class="ct">담당자별</span></div>
       <div class="bl2">
-        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-rd">7 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
-        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div><div class="btr"><div class="bf" style="width:42.8%;background:var(--p3)"></div></div></div>
-        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:42.8%;background:var(--p5)"></div></div></div>
-        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:14.3%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-yl">4 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">1 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:25%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">1 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:25%;background:var(--p3)"></div></div></div>
       </div>
     </div>
   </div>
 </div>
 <div>
-  <div class="sh"><span class="sl">Overdue WI</span><div class="sline"></div><span class="sc">73건</span></div>
+  <div class="sh"><span class="sl">Overdue WI</span><div class="sline"></div><span class="sc">75건</span></div>
   <div class="g3">
-    <div class="card">
-      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">73건</span></div>
+    <div class="card"><div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">75건</span></div>
       <div class="bl2">
-        <div><div class="bt"><span class="bn">Eunji</span><span class="bv c-rd">21 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p2)"></div></div></div>
-        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-rd">13 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:61.9%;background:var(--p1)"></div></div></div>
-        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv c-rd">12 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:57.1%;background:var(--p5)"></div></div></div>
-        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">4 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:19%;background:var(--p3)"></div></div></div>
-        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-dim">-</span></div><div class="btr"></div></div>
+        <div><div class="bt"><span class="bn">Eunji</span><span class="bv c-rd">25 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p2)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-rd">16 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:64%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-rd">15 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠2</span></span></div><div class="btr"><div class="bf" style="width:60%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv">10</span></div><div class="btr"><div class="bf" style="width:40%;background:var(--p3)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">9 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:36%;background:var(--p5)"></div></div></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">WI 유형 Top 3</span><span style="font-size:10px;color:var(--t3)">Top 3 = 53%</span></div>
+    <div class="card"><div class="ch"><span class="ct">WI 유형 Top 5</span><span style="font-size:10px;color:var(--t3)">Top 5 = 61%</span></div>
       <div class="wl">
-        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Collect Export Shipper Invoice Payment</div><div class="wtr"><div class="wf" style="width:100%;background:var(--rd)"></div></div></div><span class="wc c-rd">26</span><span class="wp">36%</span></div>
-        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Submit Korea Export Cargo Manifest</div><div class="wtr"><div class="wf" style="width:26.9%;background:var(--or)"></div></div></div><span class="wc c-or">7</span><span class="wp">10%</span></div>
-        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Issue Export Shipper Invoice</div><div class="wtr"><div class="wf" style="width:19.2%;background:var(--yl)"></div></div></div><span class="wc c-yl">5</span><span class="wp">7%</span></div>
+        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Collect Export Shipper Invoice Payment</div><div class="wtr"><div class="wf" style="width:100%;background:var(--rd)"></div></div></div><span class="wc c-rd">16</span><span class="wp">21%</span></div>
+        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Upload VGM</div><div class="wtr"><div class="wf" style="width:50%;background:var(--or)"></div></div></div><span class="wc c-or">8</span><span class="wp">11%</span></div>
+        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Upload/Create Shipper SI</div><div class="wtr"><div class="wf" style="width:50%;background:var(--yl)"></div></div></div><span class="wc c-yl">8</span><span class="wp">11%</span></div>
+        <div class="wr"><span class="wn">#4</span><div class="wi"><div class="wname">Issue Export Shipper Invoice</div><div class="wtr"><div class="wf" style="width:50%;background:var(--p2)"></div></div></div><span class="wc" style="color:var(--p2)">8</span><span class="wp">11%</span></div>
+        <div class="wr"><span class="wn">#5</span><div class="wi"><div class="wname">Submit Korea Export Cargo Manifest</div><div class="wtr"><div class="wf" style="width:31%;background:var(--t3)"></div></div></div><span class="wc c-dim">5</span><span class="wp">7%</span></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">Snooze & Controllable</span></div>
+    <div class="card"><div class="ch"><span class="ct">Snooze & Controllable</span></div>
       <div style="display:flex;gap:16px;margin-bottom:14px">
-        <div><div class="mn c-gn" style="font-size:26px">100%</div><div class="ml">Snoozed (72/72)</div></div>
+        <div><div class="mn c-gn" style="font-size:26px">100%</div><div class="ml">Snoozed (75/75)</div></div>
         <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-dim" style="font-size:26px">-</div><div class="ml">Unsnoozed</div></div>
       </div>
       <div class="div"></div>
@@ -316,925 +286,417 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
         <div class="rw">
           <svg viewBox="0 0 84 84" width="84" height="84">
             <circle cx="42" cy="42" r="32" fill="none" stroke="var(--s2)" stroke-width="9"/>
-            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--gn)" stroke-width="9" stroke-dasharray="181.9 201.1" stroke-dashoffset="50.3" stroke-linecap="round"/>
-            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--rd)" stroke-width="9" stroke-dasharray="19.5 201.1" stroke-dashoffset="-131.6" stroke-linecap="round"/>
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--gn)" stroke-width="9" stroke-dasharray="194 201.1" stroke-dashoffset="50.3" stroke-linecap="round"/>
+            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--rd)" stroke-width="9" stroke-dasharray="8 201.1" stroke-dashoffset="-143.7" stroke-linecap="round"/>
           </svg>
-          <div class="rc"><div class="rp c-gn">90%</div><div class="rs">Unctrl</div></div>
+          <div class="rc"><div class="rp c-gn">97%</div><div class="rs">Unctrl</div></div>
         </div>
         <div class="leg">
-          <div class="lr"><div class="ld" style="background:var(--gn)"></div><span class="ln">Uncontrollable</span><span class="lv c-gn">66</span></div>
-          <div class="lr"><div class="ld" style="background:var(--rd)"></div><span class="ln">Controllable</span><span class="lv c-rd">7</span></div>
+          <div class="lr"><div class="ld" style="background:var(--gn)"></div><span class="ln">Uncontrollable</span><span class="lv c-gn">73</span></div>
+          <div class="lr"><div class="ld" style="background:var(--rd)"></div><span class="ln">Controllable</span><span class="lv c-rd">2</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div>
-  <div class="sh"><span class="sl">WI Performance</span><div class="sline"></div><span class="sc">43건</span></div>
+  <div class="sh"><span class="sl">WI Performance</span><div class="sline"></div><span class="sc">12건</span></div>
   <div class="g3">
-    <div class="card">
-      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-yl">43건</span></div>
+    <div class="card"><div class="ch"><span class="ct">담당자별</span><span class="bdg b-yl">12건</span></div>
       <div class="bl2">
-        <div><div class="bt"><span class="bn">Sienna</span><span class="bv c-nv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p3)"></div></div></div>
-        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-nv">11</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
-        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">9 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span></span></div><div class="btr"><div class="bf" style="width:81.8%;background:var(--p5)"></div></div></div>
-        <div><div class="bt"><span class="bn">Antonia</span><span class="bv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡1</span> <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:54.5%;background:var(--p4)"></div></div></div>
-        <div><div class="bt"><span class="bn">Eunji</span><span class="bv">6 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡4</span></span></div><div class="btr"><div class="bf" style="width:54.5%;background:var(--p2)"></div></div></div>
+        <div><div class="bt"><span class="bn">Suyeon</span><span class="bv c-nv">4</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p1)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv c-nv">4</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">3 <span class="tag t-or" style="font-size:9px;padding:0 4px">🟠1</span></span></div><div class="btr"><div class="bf" style="width:75%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Eunji</span><span class="bv">3 <span class="tag t-yl" style="font-size:9px;padding:0 4px">🟡3</span></span></div><div class="btr"><div class="bf" style="width:75%;background:var(--p2)"></div></div></div>
+        <div><div class="bt"><span class="bn">Sienna</span><span class="bv c-nv">1</span></div><div class="btr"><div class="bf" style="width:25%;background:var(--p3)"></div></div></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">WI 유형별 Top 4</span></div>
+    <div class="card"><div class="ch"><span class="ct">WI 유형별 Top 3</span></div>
       <div class="wl">
-        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Release House Bill</div><div class="wtr"><div class="wf" style="width:100%;background:var(--yl)"></div></div></div><span class="wc c-yl">13</span><span class="wp">30%</span></div>
-        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Place Carrier Booking</div><div class="wtr"><div class="wf" style="width:84.6%;background:var(--bl)"></div></div></div><span class="wc c-bl">11</span><span class="wp">26%</span></div>
-        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Send Carrier SO to Shipper</div><div class="wtr"><div class="wf" style="width:46.2%;background:var(--p2)"></div></div></div><span class="wc" style="color:var(--p2)">6</span><span class="wp">14%</span></div>
-        <div class="wr"><span class="wn">#4</span><div class="wi"><div class="wname">Upload ISF Worksheet</div><div class="wtr"><div class="wf" style="width:46.2%;background:var(--gn)"></div></div></div><span class="wc c-gn">6</span><span class="wp">14%</span></div>
+        <div class="wr"><span class="wn">#1</span><div class="wi"><div class="wname">Export Dispatch Trucking</div><div class="wtr"><div class="wf" style="width:100%;background:var(--yl)"></div></div></div><span class="wc c-yl">3</span><span class="wp">25%</span></div>
+        <div class="wr"><span class="wn">#2</span><div class="wi"><div class="wname">Release House Bill</div><div class="wtr"><div class="wf" style="width:100%;background:var(--bl)"></div></div></div><span class="wc c-bl">3</span><span class="wp">25%</span></div>
+        <div class="wr"><span class="wn">#3</span><div class="wi"><div class="wname">Send Carrier SO to Shipper</div><div class="wtr"><div class="wf" style="width:100%;background:var(--p2)"></div></div></div><span class="wc" style="color:var(--p2)">3</span><span class="wp">25%</span></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">Snooze & Controllable</span></div>
+    <div class="card"><div class="ch"><span class="ct">Snooze & Controllable</span></div>
       <div style="display:flex;gap:16px;margin-bottom:14px">
-        <div><div class="mn c-gn" style="font-size:26px">86%</div><div class="ml">Snoozed (37/43)</div></div>
-        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-yl" style="font-size:26px">6</div><div class="ml">Unsnoozed</div></div>
-      </div>
-      <div class="div"></div>
-      <div class="ch" style="margin-top:10px;margin-bottom:10px"><span class="ct">Controllable vs Uncontrollable</span></div>
-      <div class="dw">
-        <div class="rw">
-          <svg viewBox="0 0 84 84" width="84" height="84">
-            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--s2)" stroke-width="9"/>
-            <circle cx="42" cy="42" r="32" fill="none" stroke="var(--gn)" stroke-width="9" stroke-dasharray="201.1 201.1" stroke-dashoffset="50.3" stroke-linecap="round"/>
-          </svg>
-          <div class="rc"><div class="rp c-gn">100%</div><div class="rs">Unctrl</div></div>
-        </div>
-        <div class="leg">
-          <div class="lr"><div class="ld" style="background:var(--gn)"></div><span class="ln">Uncontrollable</span><span class="lv c-gn">37</span></div>
-          <div class="lr"><div class="ld" style="background:var(--rd)"></div><span class="ln">Controllable</span><span class="lv c-dim">-</span></div>
-          <div class="note">Unsnoozed 6건 제외 기준</div>
-        </div>
+        <div><div class="mn c-gn" style="font-size:26px">92%</div><div class="ml">Snoozed (11/12)</div></div>
+        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-yl" style="font-size:26px">1</div><div class="ml">Unsnoozed</div></div>
       </div>
     </div>
   </div>
 </div>
 <div>
-  <div class="sh"><span class="sl">ISF</span><div class="sline"></div><span class="sc">7건</span></div>
+  <div class="sh"><span class="sl">ISF</span><div class="sline"></div><span class="sc">4건</span></div>
   <div class="g2">
-    <div class="card">
-      <div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">7건</span></div>
+    <div class="card"><div class="ch"><span class="ct">담당자별</span><span class="bdg b-rd">4건</span></div>
       <div class="bl2">
-        <div><div class="bt"><span class="bn">Antonia</span><span class="bv">4</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p4)"></div></div></div>
-        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">3</span></div><div class="btr"><div class="bf" style="width:75%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Hyebin</span><span class="bv">2</span></div><div class="btr"><div class="bf" style="width:100%;background:var(--p5)"></div></div></div>
+        <div><div class="bt"><span class="bn">Antonia</span><span class="bv">1</span></div><div class="btr"><div class="bf" style="width:50%;background:var(--p4)"></div></div></div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">오늘 처리 필요</span><span class="bdg b-rd">🔴 6건</span></div>
+    <div class="card"><div class="ch"><span class="ct">처리 필요</span><span class="bdg b-rd">🔴 3건</span></div>
       <div class="il">
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3915754</div><div class="inm">IFC Floors LLC</div><div class="iop">Antonia</div></div>
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3915752</div><div class="inm">IFC Floors LLC</div><div class="iop">Antonia</div></div>
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3933690</div><div class="inm">Hey Mane</div><div class="iop">Antonia</div></div>
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3908325</div><div class="inm">BRONDELL, INC.</div><div class="iop">Hyebin</div></div>
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3949413</div><div class="inm">US Joiner LLC</div><div class="iop">Hyebin</div></div>
-        <div class="ii"><div class="itag">TODAY</div><div class="iid">3952846</div><div class="inm">SOLE</div><div class="iop">Hyebin</div></div>
+        <div class="ii"><div class="itag">🔴 긴급</div><div class="iid">3938282</div><div class="inm">US Joiner LLC</div><div class="iop">Hyebin · ETD 2026-06-20</div></div>
+        <div class="ii"><div class="itag">🔴 긴급</div><div class="iid">3966805</div><div class="inm">A&D Engineering, Inc.</div><div class="iop">Hyebin · ETD 2026-06-20</div></div>
+        <div class="ii" style="background:var(--or-l);border-color:var(--or-b)"><div class="itag" style="background:var(--or)">확인</div><div class="iid">3972789</div><div class="inm">Belle Brands</div><div class="iop">Antonia · ETD 2026-06-22</div></div>
       </div>
     </div>
   </div>
 </div>
 <div>
-  <div class="sh"><span class="sl">QA — FCL 23건 · LCL 4건</span><div class="sline"></div><span class="sc">총 27건</span></div>
+  <div class="sh"><span class="sl">QA — FCL 28건 · LCL 1건</span><div class="sline"></div><span class="sc">총 29건</span></div>
   <div class="g2">
-    <div class="card">
-      <div class="ch"><span class="ct">FCL QA</span><span class="bdg b-bl">23건</span></div>
-      <table class="qt"><thead><tr><th>담당자</th><th>합계</th></tr></thead><tbody>
-        <tr><td>Sienna</td><td class="c-nv">13</td></tr>
-        <tr><td>Antonia</td><td class="c-nv">7</td></tr>
-        <tr><td>Suyeon</td><td class="c-nv">2</td></tr>
-        <tr><td>Hyebin</td><td class="c-dim">-</td></tr>
-        <tr><td>Eunji</td><td class="c-dim">-</td></tr>
+    <div class="card"><div class="ch"><span class="ct">FCL QA</span><span class="bdg b-bl">28건</span></div>
+      <table class="qt"><thead><tr><th>담당자</th><th>Task 5</th><th>Task 19</th><th>합계</th></tr></thead><tbody>
+        <tr><td>Sienna</td><td class="c-nv">1</td><td class="c-nv">17</td><td class="c-nv">18</td></tr>
+        <tr><td>Antonia</td><td class="c-nv">9</td><td class="c-nv">1</td><td class="c-nv">10</td></tr>
+        <tr><td>Suyeon</td><td class="c-dim">-</td><td class="c-nv">2</td><td class="c-nv">2</td></tr>
+        <tr><td>Eunji</td><td class="c-dim">-</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
+        <tr><td>Hyebin</td><td class="c-dim">-</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
       </tbody></table>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">LCL QA</span><span class="bdg b-bl">4건</span></div>
-      <table class="qt"><thead><tr><th>담당자</th><th>합계</th></tr></thead><tbody>
-        <tr><td>Sienna</td><td class="c-nv">2</td></tr>
-        <tr><td>Antonia</td><td class="c-nv">1</td></tr>
-        <tr><td>Hyebin</td><td class="c-nv">1</td></tr>
-        <tr><td>Suyeon</td><td class="c-dim">-</td></tr>
-        <tr><td>Eunji</td><td class="c-dim">-</td></tr>
+    <div class="card"><div class="ch"><span class="ct">LCL QA</span><span class="bdg b-bl">1건</span></div>
+      <table class="qt"><thead><tr><th>담당자</th><th>Task 4</th><th>합계</th></tr></thead><tbody>
+        <tr><td>Antonia</td><td class="c-nv">1</td><td class="c-nv">1</td></tr>
+        <tr><td>Sienna</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
+        <tr><td>Suyeon</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
+        <tr><td>Eunji</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
+        <tr><td>Hyebin</td><td class="c-dim">-</td><td class="c-dim">-</td></tr>
       </tbody></table>
     </div>
   </div>
 </div>
-</div>
-</div>
+</div></div>
 
-<!-- ══ PERSONAL TAB STYLES ══ -->
-<style>
-.sec-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.sec-title-row .sec-title{margin-bottom:0;}
-.complete-btn{padding:4px 12px;background:transparent;border:1px solid var(--gn);color:var(--gn);border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s;}
-.complete-btn:hover{background:var(--gn-l);}
-.complete-btn.done{background:var(--gn);color:#fff;border-color:var(--gn);cursor:default;}
-.p-sec.completed{opacity:.55;}
-.p-sec.completed .frow{background:var(--gn-l)!important;border-color:var(--gn-b)!important;}
-.frow.plain{background:var(--s1);border:1px solid var(--border);}
-.memo-box{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:0 1px 5px rgba(16,32,96,.07);margin-top:8px;}
-.memo-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.memo-title::before{content:'📝';font-size:12px;}
-.memo-area{width:100%;min-height:80px;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:'Inter',sans-serif;color:var(--t1);resize:vertical;outline:none;line-height:1.6;}
-.memo-area:focus{border-color:var(--bl);}
-.memo-saved{font-size:10px;color:var(--gn);margin-top:5px;display:none;}
-.qa-tbl-wrap{border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-top:4px;}
-</style>
-
-<!-- ══ SUYEON ══ -->
-<div id="suyeon" class="view">
-<div class="main">
+<!-- SUYEON -->
+<div id="suyeon" class="view"><div class="main">
   <div class="p-hdr">
     <div class="p-av" style="background:var(--p1)">S</div>
     <div><div class="p-name">Suyeon Kwak</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
     <div class="p-stats">
-      <div class="p-stat"><div class="p-stat-n c-dim">1</div><div class="p-stat-l">OTE</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">13</div><div class="p-stat-l">Overdue WI</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">11</div><div class="p-stat-l">WI Perf</div></div>
+      <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">OTE</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">15</div><div class="p-stat-l">Overdue WI</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">4</div><div class="p-stat-l">WI Perf</div></div>
       <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">ISF</div></div>
       <div class="p-stat"><div class="p-stat-n c-nv">2</div><div class="p-stat-l">QA</div></div>
     </div>
   </div>
-
-  <!-- OTE -->
-  <div class="p-sec" id="sec-sy-ote">
-    <div class="sec-title-row">
-      <div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">1건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-sy-ote',this)">✓ Complete</button>
-    </div>
-    <div class="frow plain">
-      <span class="fid">3878078</span>
-      <div class="fdesc"><strong>CSafe LLC</strong><div class="fmeta">origin_pickup_to_port · +8.01일 · TPEB · carrier_delay ✓</div></div>
-    </div>
-  </div>
-
-  <!-- Overdue WI -->
+  <div class="p-sec" id="sec-sy-ote"><div class="sec-title-row"><div class="sec-title">OTE — Transit Performance <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-sy-ote',this)">✓ Complete</button></div><div class="empty-sec">이번 주 OTE 대상 건 없음</div></div>
   <div class="p-sec" id="sec-sy-wi">
-    <div class="sec-title-row">
-      <div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">13건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-sy-wi',this)">✓ Complete</button>
-    </div>
-    <div class="frow or" id="frow-sy-wi-3910429">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3910429</span>
-      <div class="fdesc"><strong>Gloss Ventures Holdings</strong><div class="fmeta">Generate Initial Schedule · Due 2026-06-03 · Pending Response</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-sy-wi-3910429',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-sy-wi-3910429">
-      <div class="cmt-list" id="cmt-list-sy-wi-3910429"></div>
-      <div class="inp-row">
-        <input type="text" placeholder="코멘트 입력..." id="inp-sy-wi-3910429">
-        <button onclick="addCmt('sy-wi-3910429')">등록</button>
-      </div>
-    </div></div>
-    <!-- 나머지 목록 accordion -->
-    <button class="acc-btn" onclick="toggleAcc('acc-sy-wi')"><span>나머지 12건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-sy-wi">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3904072</td><td>Collect Export Shipper Invoice Payment</td><td>J Plus Specialty Foods</td><td>2026-06-10</td><td>(Client) Pending Shipper Payment</td></tr>
-        <tr><td>3917968</td><td>Collect Export Shipper Invoice Payment</td><td>Tatcha</td><td>2026-06-05</td><td>(Client) Pending Shipper Payment</td></tr>
-        <tr><td>3926117</td><td>Collect Export Shipper Invoice Payment</td><td>Sukoshi Mart</td><td>2026-06-05</td><td>(Client) Pending Consignee Payment</td></tr>
-        <tr><td>3870662</td><td>Collect Export Shipper Invoice Payment</td><td>Rural King</td><td>2026-05-28</td><td>(Client) Pending Shipper Payment</td></tr>
-        <tr><td>3877394</td><td>Input MBL Number</td><td>Rural King</td><td>2026-06-10</td><td>(Carrier) Awaiting MBL</td></tr>
-        <tr><td>3926117</td><td>Generate & upload HBL final</td><td>Sukoshi Mart</td><td>2026-06-03</td><td>(Client) Pending Consignee Payment</td></tr>
-        <tr><td>3910429</td><td>Generate Initial Schedule</td><td>Gloss Ventures Holdings</td><td>2026-06-03</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3940194</td><td>Generate Initial Schedule</td><td>Sukoshi Mart</td><td>2026-05-27</td><td>(Client) Pending Consignee Payment</td></tr>
-        <tr><td>3870882</td><td>Generate Initial Schedule</td><td>Sukoshi Mart</td><td>2026-05-13</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3910429</td><td>Place Coloader Booking</td><td>Gloss Ventures Holdings</td><td>2026-06-03</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3940194</td><td>Place Coloader Booking</td><td>Sukoshi Mart</td><td>2026-05-28</td><td>(Client) Pending Consignee Payment</td></tr>
-        <tr><td>3870882</td><td>Place Coloader Booking</td><td>Sukoshi Mart</td><td>2026-05-14</td><td>(Client) Pending Response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">15건</span></div><button class="complete-btn" onclick="completeSection('sec-sy-wi',this)">✓ Complete</button></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3982871</span><div class="fdesc"><strong>Sukoshi Mart</strong><div class="fmeta">Generic Exception · Due 2026-06-12 · Pending Response</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-sy-wi-3982871',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-sy-wi-3982871"><div class="cmt-list" id="cmt-list-sy-wi-3982871"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-sy-wi-3982871"><button onclick="addCmt('sy-wi-3982871')">등록</button></div></div></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3939287</span><div class="fdesc"><strong>Sukoshi Mart</strong><div class="fmeta">Generic Exception · Due 2026-05-24 · Pending Response</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-sy-wi-3939287',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-sy-wi-3939287"><div class="cmt-list" id="cmt-list-sy-wi-3939287"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-sy-wi-3939287"><button onclick="addCmt('sy-wi-3939287')">등록</button></div></div></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-sy-wi')"><span>나머지 13건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-sy-wi"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3991890</td><td>Generate Initial Schedule</td><td>Tatcha</td><td>2026-06-17</td><td>(3rd Party) Pending Coloader</td></tr>
+      <tr><td>3994246</td><td>Generate Initial Schedule</td><td>OOBE Apparel</td><td>2026-06-17</td><td>(Carrier) Pending Rescheduling</td></tr>
+      <tr><td>3991890</td><td>Place Coloader Booking</td><td>Tatcha</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3994246</td><td>Place Coloader Booking</td><td>OOBE Apparel</td><td>2026-06-17</td><td>(Carrier) Booking Window Open</td></tr>
+      <tr><td>3778993</td><td>Issue Export Shipper Invoice</td><td>Memodo GmbH</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3978652</td><td>Confirm Booking Details</td><td>FOH</td><td>2026-06-16</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3939287</td><td>Confirm Booking Details</td><td>Sukoshi Mart</td><td>2026-06-15</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3917968</td><td>Collect Export Shipper Invoice Payment</td><td>Tatcha</td><td>2026-06-05</td><td>(Client) Pending Shipper Payment</td></tr>
+      <tr><td>3870662</td><td>Collect Export Shipper Invoice Payment</td><td>Rural King</td><td>2026-05-28</td><td>(Client) Pending Shipper Payment</td></tr>
+      <tr><td>3926117</td><td>Generate &amp; Upload HBL Final</td><td>Sukoshi Mart</td><td>2026-06-03</td><td>(Client) Pending Consignee Payment</td></tr>
+      <tr><td>3870882</td><td>Generate Initial Schedule</td><td>Sukoshi Mart</td><td>2026-05-13</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3870882</td><td>Place Coloader Booking</td><td>Sukoshi Mart</td><td>2026-05-14</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3901198</td><td>Issue Export Shipper Invoice</td><td>LIBERTY PAPER &amp; PRINTING</td><td>2026-05-20</td><td>(Flexport Tech) System Bug</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- WI Performance -->
-  <div class="p-sec" id="sec-sy-wiperf">
-    <div class="sec-title-row">
-      <div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">11건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-sy-wiperf',this)">✓ Complete</button>
-    </div>
-    <button class="acc-btn" onclick="toggleAcc('acc-sy-wiperf')"><span>11건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-sy-wiperf">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3930494</td><td>Place Carrier Booking</td><td>Purus Intl Inc</td><td>2026-06-10 06:39</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3969993</td><td>Place Carrier Booking</td><td>RKDS, LLC</td><td>2026-06-09 10:18</td><td>(client) pending response</td></tr>
-        <tr><td>3969999</td><td>Place Carrier Booking</td><td>RKDS, LLC</td><td>2026-06-10 04:36</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3969997</td><td>Place Carrier Booking</td><td>RKDS, LLC</td><td>2026-06-10 01:42</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3967503</td><td>Place Carrier Booking</td><td>Tatcha LLC</td><td>2026-06-09 03:25</td><td>(client) pending response</td></tr>
-        <tr><td>3969990</td><td>Place Carrier Booking</td><td>RKDS, LLC</td><td>2026-06-10 01:41</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3826330</td><td>Release House Bill</td><td>SUKOSHI</td><td>2026-06-08 06:41</td><td>(client) pending payment</td></tr>
-        <tr><td>3848597</td><td>Release House Bill</td><td>SUKOSHI</td><td>2026-06-08 05:58</td><td>(client) pending response</td></tr>
-        <tr><td>3847254</td><td>Release House Bill</td><td>SUKOSHI</td><td>2026-06-08 04:28</td><td>(client) pending response</td></tr>
-        <tr><td>3915737</td><td>Send Carrier SO to Shipper</td><td>IFC Floors LLC</td><td>2026-06-09 10:57</td><td>(client) pending response</td></tr>
-        <tr><td>3946847</td><td>Send Carrier SO to Shipper</td><td>CSafe LLC</td><td>2026-06-08 07:47</td><td>(client) pending response</td></tr>
-      </tbody></table>
-    </div>
+  <div class="p-sec" id="sec-sy-wiperf"><div class="sec-title-row"><div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">4건</span></div><button class="complete-btn" onclick="completeSection('sec-sy-wiperf',this)">✓ Complete</button></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-sy-wiperf')"><span>4건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-sy-wiperf"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3946849</td><td>Export Dispatch Trucking</td><td>CSafe LLC</td><td>2026-06-16 4:51</td><td>(trucker) pending response</td></tr>
+      <tr><td>3946849</td><td>Export Dispatch Trucking</td><td>CSafe LLC</td><td>2026-06-16 4:55</td><td>(trucker) pending response</td></tr>
+      <tr><td>3867972</td><td>Export Dispatch Trucking</td><td>JI TRADING</td><td>2026-06-17 9:04</td><td>(client) pending response</td></tr>
+      <tr><td>3870852</td><td>Release House Bill</td><td>SUKOSHI</td><td>2026-06-16 2:25</td><td>(client) pending payment</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- ISF -->
-  <div class="p-sec" id="sec-sy-isf">
-    <div class="sec-title-row">
-      <div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-sy-isf',this)">✓ Complete</button>
-    </div>
-    <div class="empty-sec">이번 주 ISF 처리 건 없음</div>
+  <div class="p-sec" id="sec-sy-isf"><div class="sec-title-row"><div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-sy-isf',this)">✓ Complete</button></div><div class="empty-sec">이번 주 ISF 처리 건 없음</div></div>
+  <div class="p-sec" id="sec-sy-qa"><div class="sec-title-row"><div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">2건</span></div><button class="complete-btn" onclick="completeSection('sec-sy-qa',this)">✓ Complete</button></div>
+    <div class="qa-tbl-wrap"><table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
+      <tr><td>3947912</td><td>Task 19: MBL Payment Term</td><td>Rivertex (UK) Ltd</td><td>6</td><td>No #mblpaymenttermconfirmed · Felixstowe</td></tr>
+      <tr><td>3778993</td><td>Task 19: MBL Payment Term</td><td>Memodo GmbH</td><td>12</td><td>No #mblpaymenttermconfirmed · Hamburg</td></tr>
+    </tbody></table></div>
   </div>
+  <div class="memo-box"><div class="memo-title">개인 메모</div><textarea class="memo-area" id="memo-suyeon" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('suyeon')"></textarea><div class="memo-saved" id="memo-saved-suyeon">✓ 저장됨</div></div>
+</div></div>
 
-  <!-- QA -->
-  <div class="p-sec" id="sec-sy-qa">
-    <div class="sec-title-row">
-      <div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">2건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-sy-qa',this)">✓ Complete</button>
-    </div>
-    <div class="qa-tbl-wrap">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
-        <tr><td>3947912</td><td>Task 19: MBL Payment Term</td><td>Rivertex (UK) Ltd</td><td>1</td><td>No #mblpaymenttermconfirmed · Felixstowe</td></tr>
-        <tr><td>3778993</td><td>Task 19: MBL Payment Term</td><td>Memodo GmbH</td><td>7</td><td>No #mblpaymenttermconfirmed · Hamburg</td></tr>
-      </tbody></table>
-    </div>
-  </div>
-
-  <!-- 메모 -->
-  <div class="memo-box">
-    <div class="memo-title">개인 메모</div>
-    <textarea class="memo-area" id="memo-suyeon" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('suyeon')"></textarea>
-    <div class="memo-saved" id="memo-saved-suyeon">✓ 저장됨</div>
-  </div>
-</div>
-</div>
-
-<!-- ══ EUNJI ══ -->
-<div id="eunji" class="view">
-<div class="main">
+<!-- EUNJI -->
+<div id="eunji" class="view"><div class="main">
   <div class="p-hdr">
     <div class="p-av" style="background:var(--p2)">E</div>
     <div><div class="p-name">Eunji Lee</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
     <div class="p-stats">
       <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">OTE</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">21</div><div class="p-stat-l">Overdue WI</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">6</div><div class="p-stat-l">WI Perf</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">25</div><div class="p-stat-l">Overdue WI</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">3</div><div class="p-stat-l">WI Perf</div></div>
       <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">ISF</div></div>
       <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">QA</div></div>
     </div>
   </div>
-
-  <!-- OTE -->
-  <div class="p-sec" id="sec-ej-ote">
-    <div class="sec-title-row">
-      <div class="sec-title">OTE — Transit Performance <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-ej-ote',this)">✓ Complete</button>
-    </div>
-    <div class="empty-sec">이번 주 OTE 대상 건 없음</div>
-  </div>
-
-  <!-- Overdue WI -->
+  <div class="p-sec" id="sec-ej-ote"><div class="sec-title-row"><div class="sec-title">OTE — Transit Performance <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-ej-ote',this)">✓ Complete</button></div><div class="empty-sec">이번 주 OTE 대상 건 없음</div></div>
   <div class="p-sec" id="sec-ej-wi">
-    <div class="sec-title-row">
-      <div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">21건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-ej-wi',this)">✓ Complete</button>
-    </div>
-    <div class="frow or" id="frow-ej-wi-3923982">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3923982</span>
-      <div class="fdesc"><strong>Halo Product Group</strong><div class="fmeta">Carrier Booking Mismatch with FMT · Due 2026-06-11 · TODAY</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-ej-wi-3923982',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-ej-wi-3923982">
-      <div class="cmt-list" id="cmt-list-ej-wi-3923982"></div>
-      <div class="inp-row">
-        <input type="text" placeholder="코멘트 입력..." id="inp-ej-wi-3923982">
-        <button onclick="addCmt('ej-wi-3923982')">등록</button>
-      </div>
-    </div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-ej-wi')"><span>나머지 20건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-ej-wi">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3885249</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-10</td><td>(Other) Other Reasons</td></tr>
-        <tr><td>3885233</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-10</td><td>(Other) Other Reasons</td></tr>
-        <tr><td>3920194</td><td>Issue Export Shipper Invoice</td><td>Beautylish</td><td>2026-06-10</td><td>(Other) Other Reasons</td></tr>
-        <tr><td>3885220</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-10</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3812296</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-05</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810259</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-05</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810250</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-29</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810247</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-23</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810243</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-23</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810223</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810207</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810226</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3810239</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3825482</td><td>Collect Export Shipper Invoice Payment</td><td>Goodier Cosmetics</td><td>2026-05-18</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3820506</td><td>Collect Export Shipper Invoice Payment</td><td>Ruggable</td><td>2026-05-15</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3815391</td><td>Collect Export Shipper Invoice Payment</td><td>Ruggable</td><td>2026-05-08</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3873680</td><td>Issue Export Shipper Invoice</td><td>Brondell</td><td>2026-06-02</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3832113</td><td>Input MBL Number</td><td>Brondell</td><td>2026-06-11</td><td>(Carrier) Awaiting MBL</td></tr>
-        <tr><td>3938282</td><td>Send HBL Draft For Shipper Confirmation</td><td>US Joiner</td><td>2026-06-11</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3965385</td><td>Confirm Booking Details And Cargo Ready Date</td><td>Goodier Cosmetics</td><td>2026-06-10</td><td>(Client) Pending Response</td></tr>
-        <tr><td>3959138</td><td>Confirm Booking Details And Cargo Ready Date</td><td>Goodier Cosmetics</td><td>2026-06-09</td><td>(Client) Pending Response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">25건</span></div><button class="complete-btn" onclick="completeSection('sec-ej-wi',this)">✓ Complete</button></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3820506</span><div class="fdesc"><strong>Ruggable</strong><div class="fmeta">Collect Export Shipper Invoice Payment · Due 2026-05-15 · Pending Response</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-ej-wi-3820506',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-ej-wi-3820506"><div class="cmt-list" id="cmt-list-ej-wi-3820506"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-ej-wi-3820506"><button onclick="addCmt('ej-wi-3820506')">등록</button></div></div></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-ej-wi')"><span>나머지 24건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-ej-wi"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3885233</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885249</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3920194</td><td>Collect Export Shipper Invoice Payment</td><td>Beautylish</td><td>2026-06-16</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3873680</td><td>Collect Export Shipper Invoice Payment</td><td>Brondell</td><td>2026-06-12</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885220</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-10</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3812296</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-05</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810259</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-06-05</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810250</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-29</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810247</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-23</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810243</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-23</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810239</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810207</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3810226</td><td>Collect Export Shipper Invoice Payment</td><td>SAF HOLLAND USA</td><td>2026-05-22</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885284</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885526</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885263</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885276</td><td>Issue Export Shipper Invoice</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3938013</td><td>Issue Export Shipper Invoice</td><td>Beautylish</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3839414</td><td>Issue Export Shipper Invoice</td><td>Fanaco Fasteners</td><td>2026-06-16</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885584</td><td>Send HBL Draft For Shipper Confirmation</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885592</td><td>Upload VGM</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3885592</td><td>Upload/Create Shipper SI</td><td>SAF HOLLAND USA</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3958383</td><td>Perform Advanced Manifest Filings</td><td>US Joiner</td><td>2026-06-17</td><td>(Other) Pending Carrier Response</td></tr>
+      <tr><td>3958383</td><td>Upload ISF Worksheet</td><td>US Joiner</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- WI Performance -->
   <div class="p-sec" id="sec-ej-wiperf">
-    <div class="sec-title-row">
-      <div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">6건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-ej-wiperf',this)">✓ Complete</button>
-    </div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3952787</span><div class="fdesc"><strong>Fanaco Fasteners, LLC</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-09 · Snooze 없음 → 달아야 함</div></div></div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3974715</span><div class="fdesc"><strong>Beautylish, Inc.</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-10 · Snooze 없음 → 달아야 함</div></div></div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3885604</span><div class="fdesc"><strong>SAF HOLLAND USA INC</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-08 · Snooze 없음 → 달아야 함</div></div></div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3885615</span><div class="fdesc"><strong>SAF HOLLAND USA INC</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-09 · Snooze 없음 → 달아야 함</div></div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-ej-wiperf')"><span>나머지 2건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-ej-wiperf">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3885526</td><td>Upload ISF Worksheet</td><td>SAF HOLLAND USA</td><td>2026-06-09 11:12</td><td>(client) pending response</td></tr>
-        <tr><td>3885284</td><td>Upload ISF Worksheet</td><td>SAF HOLLAND USA</td><td>2026-06-09 11:30</td><td>(client) pending response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">3건</span></div><button class="complete-btn" onclick="completeSection('sec-ej-wiperf',this)">✓ Complete</button></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3987312</span><div class="fdesc"><strong>Brondell, Inc.</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-17 6:24 · Snooze 없음 → 달아야 함</div></div></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3947349</span><div class="fdesc"><strong>Fanaco Fasteners, LLC</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-17 6:23 · Snooze 없음 → 달아야 함</div></div></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3917059</span><div class="fdesc"><strong>Fanaco Fasteners, LLC</strong><div class="fmeta">Send Carrier SO to Shipper · Completed 2026-06-17 6:23 · Snooze 없음 → 달아야 함</div></div></div>
   </div>
+  <div class="p-sec" id="sec-ej-isf"><div class="sec-title-row"><div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-ej-isf',this)">✓ Complete</button></div><div class="empty-sec">이번 주 ISF 처리 건 없음</div></div>
+  <div class="p-sec" id="sec-ej-qa"><div class="sec-title-row"><div class="sec-title">QA <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-ej-qa',this)">✓ Complete</button></div><div class="empty-sec">이번 주 QA 대상 건 없음</div></div>
+  <div class="memo-box"><div class="memo-title">개인 메모</div><textarea class="memo-area" id="memo-eunji" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('eunji')"></textarea><div class="memo-saved" id="memo-saved-eunji">✓ 저장됨</div></div>
+</div></div>
 
-  <!-- ISF -->
-  <div class="p-sec" id="sec-ej-isf">
-    <div class="sec-title-row">
-      <div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-ej-isf',this)">✓ Complete</button>
-    </div>
-    <div class="empty-sec">이번 주 ISF 처리 건 없음</div>
-  </div>
-
-  <!-- QA -->
-  <div class="p-sec" id="sec-ej-qa">
-    <div class="sec-title-row">
-      <div class="sec-title">QA <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-ej-qa',this)">✓ Complete</button>
-    </div>
-    <div class="empty-sec">이번 주 QA 대상 건 없음</div>
-  </div>
-
-  <!-- 메모 -->
-  <div class="memo-box">
-    <div class="memo-title">개인 메모</div>
-    <textarea class="memo-area" id="memo-eunji" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('eunji')"></textarea>
-    <div class="memo-saved" id="memo-saved-eunji">✓ 저장됨</div>
-  </div>
-</div>
-</div>
-
-<!-- ══ SIENNA ══ -->
-<div id="sienna" class="view">
-<div class="main">
+<!-- SIENNA -->
+<div id="sienna" class="view"><div class="main">
   <div class="p-hdr">
     <div class="p-av" style="background:var(--p3)">S</div>
     <div><div class="p-name">Sienna Park</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
     <div class="p-stats">
-      <div class="p-stat"><div class="p-stat-n c-nv">3</div><div class="p-stat-l">OTE</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">4</div><div class="p-stat-l">Overdue WI</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">11</div><div class="p-stat-l">WI Perf</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">1</div><div class="p-stat-l">OTE</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">10</div><div class="p-stat-l">Overdue WI</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">1</div><div class="p-stat-l">WI Perf</div></div>
       <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">ISF</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">15</div><div class="p-stat-l">QA</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">18</div><div class="p-stat-l">QA</div></div>
     </div>
   </div>
-
-  <!-- OTE -->
   <div class="p-sec" id="sec-si-ote">
-    <div class="sec-title-row">
-      <div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">3건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-si-ote',this)">✓ Complete</button>
-    </div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3888195</span><div class="fdesc"><strong>Taylor Made Golf Company Inc</strong><div class="fmeta">first_port_dwell · +2.63일 · Busan → TPEB · Exception 없음</div></div></div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3889029</span><div class="fdesc"><strong>SpaceX</strong><div class="fmeta">origin_pickup_to_port · +5.58일 · Busan → TPEB · Exception 없음</div></div></div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3903216</span><div class="fdesc"><strong>AllParts Music Corp</strong><div class="fmeta">first_port_dwell · +4.93일 · Busan → TPEB · LCL · Exception 없음</div></div></div>
+    <div class="sec-title-row"><div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">1건</span></div><button class="complete-btn" onclick="completeSection('sec-si-ote',this)">✓ Complete</button></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3858737</span><div class="fdesc"><strong>SpaceX</strong><div class="fmeta">origin_pickup_to_port · +8d ETD/ATD diff · HMM RAON 024E · Exception 없음</div></div></div>
   </div>
-
-  <!-- Overdue WI -->
   <div class="p-sec" id="sec-si-wi">
-    <div class="sec-title-row">
-      <div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">4건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-si-wi',this)">✓ Complete</button>
-    </div>
-    <div class="frow or" id="frow-si-wi-3898490">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3898490</span>
-      <div class="fdesc"><strong>PVG Holding B.V.</strong><div class="fmeta">Confirm Space Release · Due 2026-06-10 · System Bug (HMM 40DC→40HC)</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-si-wi-3898490',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-si-wi-3898490">
-      <div class="cmt-list" id="cmt-list-si-wi-3898490"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-si-wi-3898490"><button onclick="addCmt('si-wi-3898490')">등록</button></div>
-    </div></div>
-    <div class="frow or" id="frow-si-wi-3955668">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3955668</span>
-      <div class="fdesc"><strong>TaylorMade Golf</strong><div class="fmeta">Place Carrier Booking · Due 2026-06-05 · System Bug (Archived shipment)</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-si-wi-3955668',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-si-wi-3955668">
-      <div class="cmt-list" id="cmt-list-si-wi-3955668"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-si-wi-3955668"><button onclick="addCmt('si-wi-3955668')">등록</button></div>
-    </div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-si-wi')"><span>나머지 2건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-si-wi">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3937498</td><td>Submit Korea Export Cargo Manifest</td><td>Andover Fabrics</td><td>2026-06-10</td><td>(Client) Awaiting Doc</td></tr>
-        <tr><td>3937493</td><td>Submit Korea Export Cargo Manifest</td><td>Andover Fabrics</td><td>2026-06-10</td><td>(Carrier) Pending Response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">10건</span></div><button class="complete-btn" onclick="completeSection('sec-si-wi',this)">✓ Complete</button></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-si-wi')"><span>10건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-si-wi"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3991853</td><td>Confirm Booking Details</td><td>Berry Global Europe</td><td>2026-06-16</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3925749</td><td>Export Dispatch Trucking</td><td>SpaceX</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3923080</td><td>Generate &amp; Upload MBL</td><td>Yepoda GmbH</td><td>2026-06-14</td><td>(Carrier) Awaiting MBL</td></tr>
+      <tr><td>3923102</td><td>Generate &amp; Upload MBL</td><td>Yepoda GmbH</td><td>2026-06-14</td><td>(Carrier) Awaiting MBL</td></tr>
+      <tr><td>3923090</td><td>Generate &amp; Upload MBL</td><td>Yepoda GmbH</td><td>2026-06-14</td><td>(Carrier) Awaiting MBL</td></tr>
+      <tr><td>3947559</td><td>Submit Korea Export Cargo Manifest</td><td>TaylorMade Golf</td><td>2026-06-18</td><td>(Carrier) Awaiting MBL</td></tr>
+      <tr><td>3915774</td><td>Submit Korea Export Cargo Manifest</td><td>Berry Global Europe</td><td>2026-06-17</td><td>(Carrier) Pending Response</td></tr>
+      <tr><td>3971894</td><td>Submit Korea Export Cargo Manifest</td><td>Adore Floors Inc.</td><td>2026-06-17</td><td>(Carrier) Awaiting MBL</td></tr>
+      <tr><td>3948290</td><td>Upload VGM</td><td>Yepoda GmbH</td><td>2026-06-18</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3948290</td><td>Upload/Create Shipper SI</td><td>Yepoda GmbH</td><td>2026-06-18</td><td>(Client) Awaiting Doc</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- WI Performance -->
   <div class="p-sec" id="sec-si-wiperf">
-    <div class="sec-title-row">
-      <div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">11건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-si-wiperf',this)">✓ Complete</button>
-    </div>
-    <button class="acc-btn" onclick="toggleAcc('acc-si-wiperf')"><span>11건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-si-wiperf">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3886702</td><td>Collect CI & PL</td><td>Metropolitan Hardwood Floors</td><td>2026-06-09 00:46</td><td>(client) awaiting doc</td></tr>
-        <tr><td>3886701</td><td>Collect CI & PL</td><td>Metropolitan Hardwood Floors</td><td>2026-06-09 00:48</td><td>(client) awaiting doc</td></tr>
-        <tr><td>3929510</td><td>Confirm Booking Details</td><td>Berry Global Europe</td><td>2026-06-09 12:06</td><td>(client) pending response</td></tr>
-        <tr><td>3929507</td><td>Confirm Booking Details</td><td>Berry Global Europe</td><td>2026-06-09 12:06</td><td>(client) pending response</td></tr>
-        <tr><td>3962143</td><td>Place Carrier Booking</td><td>Yepoda GmbH</td><td>2026-06-10 03:27</td><td>(carrier) awaiting SO</td></tr>
-        <tr><td>3962149</td><td>Place Carrier Booking</td><td>Yepoda GmbH</td><td>2026-06-10 03:29</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3962129</td><td>Place Carrier Booking</td><td>Yepoda GmbH</td><td>2026-06-10 03:30</td><td>(carrier) pending allocation</td></tr>
-        <tr><td>3949927</td><td>Place Carrier Booking</td><td>Andover Fabrics Inc.</td><td>2026-06-10 05:12</td><td>(carrier) awaiting sailing schedule</td></tr>
-        <tr><td>3896794</td><td>Release House Bill</td><td>Mane Ivy Inc</td><td>2026-06-10 06:39</td><td>(client) pending payment</td></tr>
-        <tr><td>3875700</td><td>Release House Bill</td><td>Taylor Made Golf</td><td>2026-06-09 04:28</td><td>(client) pending response</td></tr>
-        <tr><td>3951400</td><td>Upload ISF Worksheet</td><td>HLB90067 INC (HAUS LAB)</td><td>2026-06-09 04:40</td><td>(carrier) pending response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">1건</span></div><button class="complete-btn" onclick="completeSection('sec-si-wiperf',this)">✓ Complete</button></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-si-wiperf')"><span>1건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-si-wiperf"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3950124</td><td>Perform Advanced Manifest Filings</td><td>Beautylish, Inc.</td><td>2026-06-15 1:39</td><td>(flexport: export ops) completed late</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- ISF -->
-  <div class="p-sec" id="sec-si-isf">
-    <div class="sec-title-row">
-      <div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-si-isf',this)">✓ Complete</button>
-    </div>
-    <div class="empty-sec">이번 주 ISF 처리 건 없음</div>
-  </div>
-
-  <!-- QA -->
+  <div class="p-sec" id="sec-si-isf"><div class="sec-title-row"><div class="sec-title">ISF <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-si-isf',this)">✓ Complete</button></div><div class="empty-sec">이번 주 ISF 처리 건 없음</div></div>
   <div class="p-sec" id="sec-si-qa">
-    <div class="sec-title-row">
-      <div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">15건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-si-qa',this)">✓ Complete</button>
-    </div>
-    <div class="qa-tbl-wrap">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
-        <tr><td>3858737</td><td>Task 5: POL ETD/ATD Delay</td><td>Space Exploration Tech (SpaceX)</td><td>9</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
-        <tr><td>3875700</td><td>Task 5: POL ETD/ATD Delay</td><td>Taylor Made Golf</td><td>9</td><td>ETD diff +8d, ATD diff +8d · COSCO ITALY</td></tr>
-        <tr><td>3923097</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>1</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
-        <tr><td>3948242</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>1</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
-        <tr><td>3932517</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>4</td><td>No #mblpaymenttermconfirmed · Barcelona</td></tr>
-        <tr><td>3916890</td><td>Task 19: MBL Payment Term</td><td>Andover Fabrics Inc.</td><td>9</td><td>No #mblpaymenttermconfirmed · Southampton</td></tr>
-        <tr><td>3923102</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>9</td><td>No #mblpaymenttermconfirmed · Felixstowe</td></tr>
-        <tr><td>3926946</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>9</td><td>No #mblpaymenttermconfirmed · Valencia</td></tr>
-        <tr><td>3923095</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>1</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
-        <tr><td>3948252</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>1</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
-        <tr><td>3926452</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>4</td><td>No #mblpaymenttermconfirmed · Valencia</td></tr>
-        <tr><td>3923080</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>7</td><td>No #mblpaymenttermconfirmed · Barcelona</td></tr>
-        <tr><td>3923090</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>7</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
-        <tr><td>3849874</td><td>Task 13 LCL: MBL Payment Term</td><td>Yepoda GmbH</td><td>66</td><td>No #mblpaymenttermconfirmed · SI Cutoff 2026-05-14</td></tr>
-        <tr><td>3855457</td><td>Task 13 LCL: MBL Payment Term</td><td>Yepoda GmbH</td><td>66</td><td>No #mblpaymenttermconfirmed · SI Cutoff 2026-05-14</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">18건</span></div><button class="complete-btn" onclick="completeSection('sec-si-qa',this)">✓ Complete</button></div>
+    <div class="qa-tbl-wrap"><table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
+      <tr><td>3858737</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>SpaceX</td><td>14</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
+      <tr><td>3948290</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>1</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3898490</td><td>Task 19: MBL Payment Term</td><td>PVG Holding B.V.</td><td>2</td><td>No #mblpaymenttermconfirmed · La Spezia</td></tr>
+      <tr><td>3958709</td><td>Task 19: MBL Payment Term</td><td>PVG Holding B.V.</td><td>2</td><td>No #mblpaymenttermconfirmed · La Spezia</td></tr>
+      <tr><td>3948282</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>2</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3929507</td><td>Task 19: MBL Payment Term</td><td>Berry Global Europe</td><td>4</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3915774</td><td>Task 19: MBL Payment Term</td><td>Berry Global Europe</td><td>4</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3947912</td><td>Task 19: MBL Payment Term</td><td>Rivertex (UK) Ltd</td><td>6</td><td>No #mblpaymenttermconfirmed · Felixstowe</td></tr>
+      <tr><td>3923095</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>6</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3923097</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>6</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3948242</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>6</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3948252</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>6</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3926452</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>9</td><td>No #mblpaymenttermconfirmed · Valencia</td></tr>
+      <tr><td>3932517</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>9</td><td>No #mblpaymenttermconfirmed · Barcelona</td></tr>
+      <tr><td>3923080</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>12</td><td>No #mblpaymenttermconfirmed · Barcelona</td></tr>
+      <tr><td>3923090</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>12</td><td>No #mblpaymenttermconfirmed · Genoa</td></tr>
+      <tr><td>3923102</td><td>Task 19: MBL Payment Term</td><td>Yepoda GmbH</td><td>14</td><td>No #mblpaymenttermconfirmed · Felixstowe</td></tr>
+      <tr><td>3926946</td><td>Task 19: MBL Payment Term</td><td>Bieltex S.L.</td><td>14</td><td>No #mblpaymenttermconfirmed · Valencia</td></tr>
+    </tbody></table></div>
   </div>
+  <div class="memo-box"><div class="memo-title">개인 메모</div><textarea class="memo-area" id="memo-sienna" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('sienna')"></textarea><div class="memo-saved" id="memo-saved-sienna">✓ 저장됨</div></div>
+</div></div>
 
-  <!-- 메모 -->
-  <div class="memo-box">
-    <div class="memo-title">개인 메모</div>
-    <textarea class="memo-area" id="memo-sienna" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('sienna')"></textarea>
-    <div class="memo-saved" id="memo-saved-sienna">✓ 저장됨</div>
-  </div>
-</div>
-</div>
-
-<!-- ══ ANTONIA ══ -->
-<div id="antonia" class="view">
-<div class="main">
+<!-- ANTONIA -->
+<div id="antonia" class="view"><div class="main">
   <div class="p-hdr">
     <div class="p-av" style="background:var(--p4)">A</div>
-    <div><div class="p-name">Antonia Kim</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
+    <div><div class="p-name">Antonia Kim (= Geonhee Kim)</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
     <div class="p-stats">
-      <div class="p-stat"><div class="p-stat-n c-nv">7</div><div class="p-stat-l">OTE</div></div>
-      <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">Overdue WI</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">6</div><div class="p-stat-l">WI Perf</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">4</div><div class="p-stat-l">ISF</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">8</div><div class="p-stat-l">QA</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">4</div><div class="p-stat-l">OTE</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">16</div><div class="p-stat-l">Overdue WI</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">4</div><div class="p-stat-l">WI Perf</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">1</div><div class="p-stat-l">ISF</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">11</div><div class="p-stat-l">QA</div></div>
     </div>
   </div>
-
-  <!-- OTE -->
   <div class="p-sec" id="sec-an-ote">
-    <div class="sec-title-row">
-      <div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">7건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-an-ote',this)">✓ Complete</button>
-    </div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3878080</span><div class="fdesc"><strong>CSafe LLC</strong><div class="fmeta">origin_pickup_to_port · +6.88일 · carrier_delay · Exception 달것</div></div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-an-ote')"><span>나머지 6건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-an-ote">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Company</th><th>Process</th><th>Late Days</th><th>Exception</th></tr></thead><tbody>
-        <tr><td>3871117</td><td>OneSource IML</td><td>first_port_dwell</td><td>+3.92일</td><td>carrier_delay</td></tr>
-        <tr><td>3889063</td><td>Alpha Engineered Composites</td><td>first_port_dwell</td><td>+1.58일</td><td>carrier_delay</td></tr>
-        <tr><td>3925461</td><td>Earnest Machine Products</td><td>first_port_dwell</td><td>+2.45일</td><td>carrier_delay</td></tr>
-        <tr><td>3878076</td><td>CSafe LLC</td><td>origin_pickup_to_port</td><td>+7.69일</td><td>carrier_delay</td></tr>
-        <tr><td>3797743</td><td>Better World Books</td><td>origin_pickup_to_port</td><td>+4.03일</td><td>carrier_delay</td></tr>
-        <tr><td>3943447</td><td>Robert Bosch GmbH</td><td>lcl_consolidation_processing</td><td>+2.24일</td><td>-</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">4건</span></div><button class="complete-btn" onclick="completeSection('sec-an-ote',this)">✓ Complete</button></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3873136</span><div class="fdesc"><strong>K&amp;N Engineering</strong><div class="fmeta">first_port_dwell · +7.08일 · Exception 없음</div></div></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3922543</span><div class="fdesc"><strong>Purus Intl Inc</strong><div class="fmeta">origin_pickup_to_port · +1.67일 · Exception 없음</div></div></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3951664</span><div class="fdesc"><strong>Performance Labs Pte. Ltd.</strong><div class="fmeta">origin_pickup_to_port · +3.82일 · Exception 없음</div></div></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3951653</span><div class="fdesc"><strong>Performance Labs Pte. Ltd.</strong><div class="fmeta">origin_pickup_to_port · +5.64일 · Exception 없음</div></div></div>
   </div>
-
-  <!-- Overdue WI -->
   <div class="p-sec" id="sec-an-wi">
-    <div class="sec-title-row">
-      <div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">1건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-an-wi',this)">✓ Complete</button>
-    </div>
-    <div class="frow or" id="frow-an-wi-3915746">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3915746</span>
-      <div class="fdesc"><strong>IFC Floors LLC</strong><div class="fmeta">Send Carrier SI / Submit Korea Export Cargo Manifest · Due 2026-06-05 · Awaiting Shipper Doc</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-an-wi-3915746',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-an-wi-3915746">
-      <div class="cmt-list" id="cmt-list-an-wi-3915746"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-an-wi-3915746"><button onclick="addCmt('an-wi-3915746')">등록</button></div>
-    </div></div>
+    <div class="sec-title-row"><div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">16건</span></div><button class="complete-btn" onclick="completeSection('sec-an-wi',this)">✓ Complete</button></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3946847</span><div class="fdesc"><strong>CSafe LLC</strong><div class="fmeta">Confirm Port Call For Customs Filing · Due 2026-06-18 · Awaiting Shipper Doc</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-an-wi-3946847',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-an-wi-3946847"><div class="cmt-list" id="cmt-list-an-wi-3946847"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-an-wi-3946847"><button onclick="addCmt('an-wi-3946847')">등록</button></div></div></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3877368</span><div class="fdesc"><strong>Rural King</strong><div class="fmeta">Upload ISF Worksheet · Due 2026-06-15 · Awaiting ISF</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-an-wi-3877368',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-an-wi-3877368"><div class="cmt-list" id="cmt-list-an-wi-3877368"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-an-wi-3877368"><button onclick="addCmt('an-wi-3877368')">등록</button></div></div></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-an-wi')"><span>나머지 14건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-an-wi"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3946847</td><td>Send Carrier SI</td><td>CSafe LLC</td><td>2026-06-18</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3946847</td><td>Submit Korea Export Cargo Manifest</td><td>CSafe LLC</td><td>2026-06-18</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3946847</td><td>Upload VGM</td><td>CSafe LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3946847</td><td>Upload/Create Shipper SI</td><td>CSafe LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3971793</td><td>Send Carrier SI</td><td>IFC Floors LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3971793</td><td>Submit Korea Export Cargo Manifest</td><td>IFC Floors LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3971793</td><td>Upload VGM</td><td>IFC Floors LLC</td><td>2026-06-16</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3971793</td><td>Upload/Create Shipper SI</td><td>IFC Floors LLC</td><td>2026-06-16</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3952845</td><td>Upload VGM</td><td>IFC Floors LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3952845</td><td>Upload/Create Shipper SI</td><td>IFC Floors LLC</td><td>2026-06-17</td><td>(Client) Awaiting Doc</td></tr>
+      <tr><td>3971251</td><td>Perform Advanced Manifest Filings</td><td>OneSkin</td><td>2026-06-16</td><td>(Client) Awaiting ISF</td></tr>
+      <tr><td>3971251</td><td>Upload ISF Worksheet</td><td>OneSkin</td><td>2026-06-16</td><td>(Client) Awaiting ISF</td></tr>
+      <tr><td>3877368</td><td>Perform Advanced Manifest Filings</td><td>Rural King</td><td>2026-06-15</td><td>(Client) Awaiting ISF</td></tr>
+      <tr><td>3901198</td><td>Release House Bill</td><td>LIBERTY PAPER &amp; PRINTING</td><td>2026-06-12</td><td>(Client) Pending Payment</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- WI Performance -->
   <div class="p-sec" id="sec-an-wiperf">
-    <div class="sec-title-row">
-      <div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">6건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-an-wiperf',this)">✓ Complete</button>
-    </div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3937484</span><div class="fdesc"><strong>Robert Bosch GmbH</strong><div class="fmeta">Upload ISF Worksheet · Completed 2026-06-09 · Snooze 없음 → 달아야 함</div></div></div>
-    <div class="frow or" id="frow-an-wiperf-3904482">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3904482</span>
-      <div class="fdesc"><strong>LIBERTY PAPER & PRINTING</strong><div class="fmeta">Release House Bill · Completed 2026-06-08 · (client) pending payment</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-an-wiperf-3904482',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-an-wiperf-3904482">
-      <div class="cmt-list" id="cmt-list-an-wiperf-3904482"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-an-wiperf-3904482"><button onclick="addCmt('an-wiperf-3904482')">등록</button></div>
-    </div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-an-wiperf')"><span>나머지 4건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-an-wiperf">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3858678</td><td>Release House Bill</td><td>LIBERTY PAPER & PRINTING</td><td>2026-06-08 13:47</td><td>(client) pending payment</td></tr>
-        <tr><td>3928632</td><td>Place Carrier Booking</td><td>RKDS, LLC</td><td>2026-06-09 06:17</td><td>(client) pending response</td></tr>
-        <tr><td>3868551</td><td>Upload ISF Worksheet</td><td>OOBE Apparel Design Group</td><td>2026-06-10 05:40</td><td>(client) pending response</td></tr>
-        <tr><td>3901101</td><td>Upload ISF Worksheet</td><td>Starface World</td><td>2026-06-09 03:24</td><td>(client) pending response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">4건</span></div><button class="complete-btn" onclick="completeSection('sec-an-wiperf',this)">✓ Complete</button></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-an-wiperf')"><span>4건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-an-wiperf"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3797743</td><td>Collect CI &amp; PL</td><td>Better World Books</td><td>2026-06-15 3:09</td><td>(client) pending response</td></tr>
+      <tr><td>3870852</td><td>Release House Bill</td><td>SUKOSHI</td><td>2026-06-16 2:25</td><td>(client) pending payment</td></tr>
+      <tr><td>3904072</td><td>Release House Bill</td><td>J Plus Specialty Foods</td><td>2026-06-16 2:23</td><td>(client) pending payment</td></tr>
+      <tr><td>3954582</td><td>Upload ISF Worksheet</td><td>Thrive Causemetics</td><td>2026-06-16 6:10</td><td>(client) awaiting ISF</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- ISF -->
   <div class="p-sec" id="sec-an-isf">
-    <div class="sec-title-row">
-      <div class="sec-title">ISF <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">총 4건 · 🔴 오늘 처리 3건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-an-isf',this)">✓ Complete</button>
-    </div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3915754</span><div class="fdesc"><strong>IFC Floors LLC</strong><div class="fmeta">ETD 2026-06-04 · No ISF · flexport_service</div></div></div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3915752</span><div class="fdesc"><strong>IFC Floors LLC</strong><div class="fmeta">ETD 2026-06-04 · No ISF · flexport_service</div></div></div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3946793</span><div class="fdesc"><strong>CSafe LLC</strong><div class="fmeta">ETD 2026-06-14 · No ISF · flexport_service</div></div></div>
-    <div class="frow plain"><span class="fid">3933690</span><div class="fdesc"><strong>Hey Mane</strong><div class="fmeta">ETD 2026-06-17 · No ISF · flexport_service · 오늘 처리 아님</div></div></div>
+    <div class="sec-title-row"><div class="sec-title">ISF <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">🔴 1건</span></div><button class="complete-btn" onclick="completeSection('sec-an-isf',this)">✓ Complete</button></div>
+    <div class="frow rd"><span class="flag-label fl-rd">🔴 확인</span><span class="fid">3972789</span><div class="fdesc"><strong>Belle Brands</strong><div class="fmeta">ETD 2026-06-22 · No ISF · flexport_service</div></div></div>
   </div>
-
-  <!-- QA -->
   <div class="p-sec" id="sec-an-qa">
-    <div class="sec-title-row">
-      <div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">8건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-an-qa',this)">✓ Complete</button>
-    </div>
-    <div class="qa-tbl-wrap">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
-        <tr><td>3917120</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>RKDS, LLC</td><td>5</td><td>ETD diff +7d · YM WEALTH 191E</td></tr>
-        <tr><td>3911183</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>Intl Manufacturing & Logistics</td><td>1</td><td>ETD diff +7d · GUNHILDE MAERSK 624E</td></tr>
-        <tr><td>3873136</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>K&N Engineering</td><td>4</td><td>ETD diff +6d · MSC FAITH GO622N</td></tr>
-        <tr><td>3858678</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>D D Office Products</td><td>9</td><td>ETD diff 0, ATD diff -14d · ANTWERP 80E</td></tr>
-        <tr><td>3901315</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>New Milani Group</td><td>9</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
-        <tr><td>3904072</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>J Plus Speciality Foods</td><td>9</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
-        <tr><td>3904553</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>OneSkin, Inc.</td><td>9</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
-        <tr><td>3929418</td><td>Task 4 LCL: POL ETD/ATD Delay</td><td>Vivid Golf LLC</td><td>7</td><td>ETD diff +8d, ATD diff +9d · HMM RUBY 0013E</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">11건</span></div><button class="complete-btn" onclick="completeSection('sec-an-qa',this)">✓ Complete</button></div>
+    <div class="qa-tbl-wrap"><table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
+      <tr><td>3917120</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>RKDS, LLC</td><td>10</td><td>ETD diff +7d · YM WEALTH 191E</td></tr>
+      <tr><td>3953283</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>Anheuser-Busch</td><td>1</td><td>ETD diff +8d · MSC ABY X UK623A</td></tr>
+      <tr><td>3915746</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>Intl Flooring Company</td><td>2</td><td>ETD diff +13d · MAERSK LUZ 625E</td></tr>
+      <tr><td>3911183</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>Intl Manufacturing &amp; Logistics</td><td>6</td><td>ETD diff +7d · GUNHILDE MAERSK 624E</td></tr>
+      <tr><td>3873136</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>K&amp;N Engineering</td><td>9</td><td>ETD diff +8d · MSC FAITH GO622N</td></tr>
+      <tr><td>3858678</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>D D Office Products</td><td>14</td><td>ATD diff -14d · ANTWERP 80E</td></tr>
+      <tr><td>3901315</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>New Milani Group</td><td>14</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
+      <tr><td>3904072</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>J Plus Speciality Foods</td><td>14</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
+      <tr><td>3904553</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>OneSkin, Inc.</td><td>14</td><td>ETD diff +8d, ATD diff +8d · HMM RAON 024E</td></tr>
+      <tr><td>3778993</td><td>Task 19: MBL Payment Term</td><td>Memodo GmbH</td><td>12</td><td>No #mblpaymenttermconfirmed · Hamburg</td></tr>
+      <tr><td>3929418</td><td>Task 4 LCL: POL ETD/ATD Delay</td><td>Vivid Golf LLC</td><td>12</td><td>ETD diff +8d, ATD diff +9d · HMM RUBY 0013E</td></tr>
+    </tbody></table></div>
   </div>
+  <div class="memo-box"><div class="memo-title">개인 메모</div><textarea class="memo-area" id="memo-antonia" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('antonia')"></textarea><div class="memo-saved" id="memo-saved-antonia">✓ 저장됨</div></div>
+</div></div>
 
-  <!-- 메모 -->
-  <div class="memo-box">
-    <div class="memo-title">개인 메모</div>
-    <textarea class="memo-area" id="memo-antonia" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('antonia')"></textarea>
-    <div class="memo-saved" id="memo-saved-antonia">✓ 저장됨</div>
-  </div>
-</div>
-</div>
-
-<!-- ══ HYEBIN ══ -->
-<div id="hyebin" class="view">
-<div class="main">
+<!-- HYEBIN -->
+<div id="hyebin" class="view"><div class="main">
   <div class="p-hdr">
     <div class="p-av" style="background:var(--p5)">H</div>
     <div><div class="p-name">Hyebin Mun</div><div style="font-size:11px;color:var(--t3)">NEA Export Operations</div></div>
     <div class="p-stats">
-      <div class="p-stat"><div class="p-stat-n c-nv">3</div><div class="p-stat-l">OTE</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">12</div><div class="p-stat-l">Overdue WI</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">9</div><div class="p-stat-l">WI Perf</div></div>
-      <div class="p-stat"><div class="p-stat-n c-rd">3</div><div class="p-stat-l">ISF</div></div>
-      <div class="p-stat"><div class="p-stat-n c-nv">1</div><div class="p-stat-l">QA</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">1</div><div class="p-stat-l">OTE</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">9</div><div class="p-stat-l">Overdue WI</div></div>
+      <div class="p-stat"><div class="p-stat-n c-nv">3</div><div class="p-stat-l">WI Perf</div></div>
+      <div class="p-stat"><div class="p-stat-n c-rd">2</div><div class="p-stat-l">ISF</div></div>
+      <div class="p-stat"><div class="p-stat-n c-dim">-</div><div class="p-stat-l">QA</div></div>
     </div>
   </div>
-
-  <!-- OTE -->
   <div class="p-sec" id="sec-hy-ote">
-    <div class="sec-title-row">
-      <div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">3건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-hy-ote',this)">✓ Complete</button>
-    </div>
-    <button class="acc-btn" onclick="toggleAcc('acc-hy-ote')"><span>3건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-hy-ote">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Company</th><th>Process</th><th>Late Days</th><th>Exception</th></tr></thead><tbody>
-        <tr><td>3918060</td><td>Beautylish, Inc.</td><td>origin_pickup_to_port</td><td>+4.32일</td><td>carrier_delay</td></tr>
-        <tr><td>3906211</td><td>Waterdoctor, Inc.</td><td>origin_pickup_to_port</td><td>+6.67일</td><td>carrier_delay</td></tr>
-        <tr><td>3910983</td><td>Kosas Cosmetics</td><td>first_port_dwell</td><td>+2.58일</td><td>carrier_delay</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">OTE — Transit Performance <span class="bdg b-nv" style="font-size:10px;text-transform:none;letter-spacing:0">1건</span></div><button class="complete-btn" onclick="completeSection('sec-hy-ote',this)">✓ Complete</button></div>
+    <div class="frow yl"><span class="flag-label fl-yl">🟡 Exception</span><span class="fid">3885284</span><div class="fdesc"><strong>SAF HOLLAND USA INC</strong><div class="fmeta">first_port_dwell · +0.26일 · Exception 없음</div></div></div>
   </div>
-
-  <!-- Overdue WI -->
   <div class="p-sec" id="sec-hy-wi">
-    <div class="sec-title-row">
-      <div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">12건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-hy-wi',this)">✓ Complete</button>
-    </div>
-    <div class="frow or" id="frow-hy-wi-3897582">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3897582</span>
-      <div class="fdesc"><strong>Fanaco Fasteners</strong><div class="fmeta">Generic Exception · Due 2026-06-09 · Awaiting MBL from Carrier</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-hy-wi-3897582',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-hy-wi-3897582">
-      <div class="cmt-list" id="cmt-list-hy-wi-3897582"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-hy-wi-3897582"><button onclick="addCmt('hy-wi-3897582')">등록</button></div>
-    </div></div>
-    <div class="frow or" id="frow-hy-wi-3899465">
-      <span class="flag-label fl-or">🟠 코멘트</span>
-      <span class="fid">3899465</span>
-      <div class="fdesc"><strong>Denim Tears</strong><div class="fmeta">Confirm Booking Details And Cargo Ready Date · Due 2026-06-10 · Pending Response</div></div>
-      <button class="cmt-btn" onclick="toggleCmt('cmt-hy-wi-3899465',this)">💬 코멘트</button>
-    </div>
-    <div class="cmt-wrap"><div class="cmt-area" id="cmt-hy-wi-3899465">
-      <div class="cmt-list" id="cmt-list-hy-wi-3899465"></div>
-      <div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-hy-wi-3899465"><button onclick="addCmt('hy-wi-3899465')">등록</button></div>
-    </div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-hy-wi')"><span>나머지 건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-hy-wi">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3900262</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900264</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900266</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900291</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900289</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900287</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900285</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900281</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3900272</td><td>Collect Export Shipper Invoice Payment</td><td>World Centric</td><td>2026-06-11</td><td>(Client) Pending HBL Release</td></tr>
-        <tr><td>3899465</td><td>Confirm Booking Details And Cargo Ready Date</td><td>Denim Tears</td><td>2026-06-10</td><td>(Client) Pending Response</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">Overdue WI <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">9건</span></div><button class="complete-btn" onclick="completeSection('sec-hy-wi',this)">✓ Complete</button></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3985995</span><div class="fdesc"><strong>GSI Outdoors</strong><div class="fmeta">Generic Exception · Due 2026-06-13 · Pending Response</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-hy-wi-3985995',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-hy-wi-3985995"><div class="cmt-list" id="cmt-list-hy-wi-3985995"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-hy-wi-3985995"><button onclick="addCmt('hy-wi-3985995')">등록</button></div></div></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-hy-wi')"><span>나머지 8건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-hy-wi"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Due Date</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3952787</td><td>Upload VGM</td><td>Fanaco Fasteners</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3943823</td><td>Upload VGM</td><td>World Centric</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3943824</td><td>Upload VGM</td><td>World Centric</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3952787</td><td>Upload/Create Shipper SI</td><td>Fanaco Fasteners</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3943823</td><td>Upload/Create Shipper SI</td><td>World Centric</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3943824</td><td>Upload/Create Shipper SI</td><td>World Centric</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3943822</td><td>Send HBL Draft For Shipper Confirmation</td><td>World Centric</td><td>2026-06-18</td><td>(Client) Pending Response</td></tr>
+      <tr><td>3974715</td><td>Send HBL Draft For Shipper Confirmation</td><td>Beautylish</td><td>2026-06-17</td><td>(Client) Pending Response</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- WI Performance -->
   <div class="p-sec" id="sec-hy-wiperf">
-    <div class="sec-title-row">
-      <div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">9건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-hy-wiperf',this)">✓ Complete</button>
-    </div>
-    <div class="frow yl"><span class="flag-label fl-yl">🟡 Snooze</span><span class="fid">3871175</span><div class="fdesc"><strong>SAF HOLLAND USA INC</strong><div class="fmeta">Collect CI & PL · Completed 2026-06-09 · Snooze 없음 → 확인 필요</div></div></div>
-    <button class="acc-btn" onclick="toggleAcc('acc-hy-wiperf')"><span>나머지 8건 전체 보기</span><span class="arr">▶</span></button>
-    <div class="acc-content" id="acc-hy-wiperf">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
-        <tr><td>3917921</td><td>Generate & upload MBL</td><td>Gellert Global Group</td><td>2026-06-08 01:46</td><td>(carrier) awaiting MBL</td></tr>
-        <tr><td>3910983</td><td>Generate & upload MBL</td><td>Kosas Cosmetics</td><td>2026-06-08 01:10</td><td>(carrier) awaiting MBL</td></tr>
-        <tr><td>3820502</td><td>Release House Bill</td><td>Ruggable, LLC</td><td>2026-06-08 01:47</td><td>(client) pending payment</td></tr>
-        <tr><td>3910983</td><td>Release House Bill</td><td>Kosas Cosmetics</td><td>2026-06-09 02:16</td><td>(client) pending payment</td></tr>
-        <tr><td>3858731</td><td>Release House Bill</td><td>Brondell, Inc.</td><td>2026-06-08 01:11</td><td>(client) pending payment</td></tr>
-        <tr><td>3810259</td><td>Release House Bill</td><td>SAF HOLLAND USA INC</td><td>2026-06-08 01:11</td><td>(client) pending payment</td></tr>
-        <tr><td>3812296</td><td>Release House Bill</td><td>SAF HOLLAND USA INC</td><td>2026-06-08 01:11</td><td>(client) pending payment</td></tr>
-        <tr><td>3904233</td><td>Release House Bill</td><td>Beautylish, Inc.</td><td>2026-06-08 01:48</td><td>(client) pending payment</td></tr>
-      </tbody></table>
-    </div>
+    <div class="sec-title-row"><div class="sec-title">WI Performance <span class="bdg b-yl" style="font-size:10px;text-transform:none;letter-spacing:0">3건</span></div><button class="complete-btn" onclick="completeSection('sec-hy-wiperf',this)">✓ Complete</button></div>
+    <div class="frow or"><span class="flag-label fl-or">🟠 코멘트</span><span class="fid">3950124</span><div class="fdesc"><strong>Beautylish, Inc.</strong><div class="fmeta">Perform Advanced Manifest Filings · Completed 2026-06-15 1:39 · (flexport: export ops) completed late</div></div><button class="cmt-btn" onclick="toggleCmt('cmt-hy-wiperf-3950124',this)">💬 코멘트</button></div>
+    <div class="cmt-wrap"><div class="cmt-area" id="cmt-hy-wiperf-3950124"><div class="cmt-list" id="cmt-list-hy-wiperf-3950124"></div><div class="inp-row"><input type="text" placeholder="코멘트 입력..." id="inp-hy-wiperf-3950124"><button onclick="addCmt('hy-wiperf-3950124')">등록</button></div></div></div>
+    <button class="acc-btn" onclick="toggleAcc('acc-hy-wiperf')"><span>나머지 2건 전체 보기</span><span class="arr">▶</span></button>
+    <div class="acc-content" id="acc-hy-wiperf"><table class="atbl"><thead><tr><th>Flex ID</th><th>WI Name</th><th>Company</th><th>Completed At</th><th>Snooze Reason</th></tr></thead><tbody>
+      <tr><td>3873680</td><td>Release House Bill</td><td>Brondell, Inc.</td><td>2026-06-16 2:59</td><td>(client) pending payment</td></tr>
+      <tr><td>3954582</td><td>Upload ISF Worksheet</td><td>Thrive Causemetics</td><td>2026-06-16 6:10</td><td>(client) awaiting ISF</td></tr>
+    </tbody></table></div>
   </div>
-
-  <!-- ISF -->
   <div class="p-sec" id="sec-hy-isf">
-    <div class="sec-title-row">
-      <div class="sec-title">ISF <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">🔴 3건 · 오늘 처리</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-hy-isf',this)">✓ Complete</button>
-    </div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3908325</span><div class="fdesc"><strong>BRONDELL, INC.</strong><div class="fmeta">ETD 2026-06-14 · No ISF · flexport_service</div></div></div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3949413</span><div class="fdesc"><strong>US Joiner LLC</strong><div class="fmeta">ETD 2026-06-13 · ISF# CHQ-47663441947</div></div></div>
-    <div class="frow rd"><span class="flag-label fl-rd">🔴 TODAY</span><span class="fid">3952846</span><div class="fdesc"><strong>SOLE</strong><div class="fmeta">ETD 2026-06-14 · No ISF · flexport_service</div></div></div>
+    <div class="sec-title-row"><div class="sec-title">ISF <span class="bdg b-rd" style="font-size:10px;text-transform:none;letter-spacing:0">🔴 2건 · ETD 6/20 긴급</span></div><button class="complete-btn" onclick="completeSection('sec-hy-isf',this)">✓ Complete</button></div>
+    <div class="frow rd"><span class="flag-label fl-rd">🔴 긴급</span><span class="fid">3938282</span><div class="fdesc"><strong>US Joiner LLC</strong><div class="fmeta">ETD 2026-06-20 · No ISF · flexport_service · 69 rcvd 2026-06-12 · 1Y rcvd 2026-06-16</div></div></div>
+    <div class="frow rd"><span class="flag-label fl-rd">🔴 긴급</span><span class="fid">3966805</span><div class="fdesc"><strong>A&amp;D Engineering, Inc.</strong><div class="fmeta">ETD 2026-06-20 · ISF# CHQ-22996751940 · 69 rcvd 2026-06-15 · 1Y rcvd 2026-06-16</div></div></div>
   </div>
-
-  <!-- QA -->
-  <div class="p-sec" id="sec-hy-qa">
-    <div class="sec-title-row">
-      <div class="sec-title">QA <span class="bdg b-bl" style="font-size:10px;text-transform:none;letter-spacing:0">2건</span></div>
-      <button class="complete-btn" onclick="completeSection('sec-hy-qa',this)">✓ Complete</button>
-    </div>
-    <div class="qa-tbl-wrap">
-      <table class="atbl"><thead><tr><th>Flex ID</th><th>Task</th><th>Client</th><th>QA Times</th><th>Detail</th></tr></thead><tbody>
-        <tr><td>3839414</td><td>Task 5: POL ETD/ATD Delay (FCL)</td><td>Fanaco Fasteners, LLC</td><td>5</td><td>ETD diff +7d · YM WEALTH 191E</td></tr>
-        <tr><td>3867306</td><td>Task 4 LCL: POL ETD/ATD Delay</td><td>Goodier Cosmetics Inc</td><td>6</td><td>ETD diff +14d, ATD diff +14d · HMM RAON 0024E</td></tr>
-      </tbody></table>
-    </div>
-  </div>
-
-  <!-- 메모 -->
-  <div class="memo-box">
-    <div class="memo-title">개인 메모</div>
-    <textarea class="memo-area" id="memo-hyebin" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('hyebin')"></textarea>
-    <div class="memo-saved" id="memo-saved-hyebin">✓ 저장됨</div>
-  </div>
-</div>
-</div>
+  <div class="p-sec" id="sec-hy-qa"><div class="sec-title-row"><div class="sec-title">QA <span class="bdg b-gn" style="font-size:10px;text-transform:none;letter-spacing:0">해당 없음</span></div><button class="complete-btn" onclick="completeSection('sec-hy-qa',this)">✓ Complete</button></div><div class="empty-sec">이번 주 QA 대상 건 없음</div></div>
+  <div class="memo-box"><div class="memo-title">개인 메모</div><textarea class="memo-area" id="memo-hyebin" placeholder="오늘 할 일, 특이사항, 메모..." oninput="saveMemo('hyebin')"></textarea><div class="memo-saved" id="memo-saved-hyebin">✓ 저장됨</div></div>
+</div></div>
 
 <script>
-function switchTab(id, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
-  const el = document.getElementById(id);
-  if (el) el.classList.add('active');
-  btn.classList.add('on');
-}
-
-function toggleAcc(id) {
-  const content = document.getElementById(id);
-  const btn = content.previousElementSibling;
-  content.classList.toggle('open');
-  btn.classList.toggle('open');
-}
-
-function toggleCmt(id, btn) {
-  const area = document.getElementById(id);
-  const isOpen = area.classList.toggle('open');
-  btn.textContent = isOpen ? '✕ 닫기' : '💬 코멘트';
-}
-
-// ── JSONBin 공유 저장소 ──
-const JSONBIN_API_KEY = '$2a$10$n0h9BayoKL/fS6/Ll.PGyuqnwsv6wPh8uTUGxsfREsIwJ9H8Ffw3C';
-const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
-const BIN_ID = '6a2b5cf9da38895dfeb1da5a';
-let cmtStore = {};
-let completeState = {};
-let memoStore = {};
-let saveTimer = null;
-
-async function initBin() {
-  try {
-    const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, {
-      headers: {'X-Master-Key': JSONBIN_API_KEY}
-    });
-    const data = await res.json();
-    const rec = data.record || {};
-    cmtStore = rec.cmtStore || {};
-    completeState = rec.completeState || {};
-    memoStore = rec.memoStore || {};
-  } catch(e) { console.error('bin load error', e); }
-  restoreUI();
-}
-
-function restoreUI() {
-  // 코멘트 복원
-  Object.keys(cmtStore).forEach(key => renderCmts(key));
-  // Complete 상태 복원
-  Object.entries(completeState).forEach(([secId, done]) => {
-    if (!done) return;
-    const sec = document.getElementById(secId);
-    if (!sec) return;
-    sec.classList.add('completed');
-    const btn = sec.querySelector('.complete-btn');
-    if (btn) { btn.textContent = '✓ 완료됨'; btn.classList.add('done'); }
-  });
-  // 메모 복원
-  ['suyeon','eunji','sienna','antonia','hyebin'].forEach(p => {
-    const ta = document.getElementById('memo-' + p);
-    if (ta) ta.value = memoStore[p] || '';
-  });
-}
-
-async function pushSave() {
-  try {
-    const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': JSONBIN_API_KEY
-      },
-      body: JSON.stringify({cmtStore, completeState, memoStore})
-    });
-    const d = await res.json();
-    console.log('saved', d.metadata);
-  } catch(e) { console.error('bin save error', e); }
-}
-
-function scheduleSave() { pushSave(); }
-
-function addCmt(key) {
-  const inp = document.getElementById('inp-' + key);
-  const text = inp.value.trim();
-  if (!text) return;
-  if (!cmtStore[key]) cmtStore[key] = [];
-  const now = new Date().toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-  cmtStore[key].push({text, time: now, replies: []});
-  inp.value = '';
-  scheduleSave();
-  renderCmts(key);
-}
-
-function addReply(key, idx) {
-  const inp = document.getElementById('rinp-' + key + '-' + idx);
-  const text = inp.value.trim();
-  if (!text) return;
-  const now = new Date().toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-  cmtStore[key][idx].replies.push({text, time: now});
-  inp.value = '';
-  scheduleSave();
-  renderCmts(key);
-}
-
-function completeSection(secId, btn) {
-  const sec = document.getElementById(secId);
-  if (!sec) return;
-  sec.classList.toggle('completed');
-  const done = sec.classList.contains('completed');
-  btn.textContent = done ? '✓ 완료됨' : '✓ Complete';
-  btn.classList.toggle('done', done);
-  completeState[secId] = done;
-  scheduleSave();
-}
-
-function saveMemo(person) {
-  const ta = document.getElementById('memo-' + person);
-  const saved = document.getElementById('memo-saved-' + person);
-  if (!ta) return;
-  memoStore[person] = ta.value;
-  scheduleSave();
-  saved.style.display = 'block';
-  clearTimeout(ta._t);
-  ta._t = setTimeout(() => saved.style.display = 'none', 1500);
-}
-
-window.addEventListener('DOMContentLoaded', () => initBin());
-
-
-
-function delCmt(key, idx) {
-  if (!confirm('코멘트를 삭제할까요?')) return;
-  cmtStore[key].splice(idx, 1);
-  pushSave();
-  renderCmts(key);
-}
-
-function delReply(key, idx, ri) {
-  if (!confirm('답글을 삭제할까요?')) return;
-  cmtStore[key][idx].replies.splice(ri, 1);
-  pushSave();
-  renderCmts(key);
-}
-
-function renderCmts(key) {
-  const list = document.getElementById('cmt-list-' + key);
-  if (!list) return;
-  list.innerHTML = '';
-  (cmtStore[key] || []).forEach((c, i) => {
-    const replies = (c.replies || []).map((r, ri) =>
-      `<div class="reply-item">
-        <div class="reply-meta">${r.time} <span class="del-btn" onclick="delReply('${key}',${i},${ri})">✕</span></div>
-        ${r.text}
-      </div>`
-    ).join('');
-    list.innerHTML += `
-      <div class="cmt-item">
-        <div class="cmt-meta">${c.time} <span class="del-btn" onclick="delCmt('${key}',${i})">✕ 삭제</span></div>
-        <div class="cmt-text">${c.text}</div>
-        <div class="reply-wrap">${replies}
-          <div class="reply-inp-row">
-            <input type="text" id="rinp-${key}-${i}" placeholder="답글...">
-            <button onclick="addReply('${key}',${i})">↩</button>
-          </div>
-        </div>
-      </div>`;
-  });
-}
+function switchTab(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));const el=document.getElementById(id);if(el)el.classList.add('active');btn.classList.add('on');}
+function toggleAcc(id){const c=document.getElementById(id);const b=c.previousElementSibling;c.classList.toggle('open');b.classList.toggle('open');}
+function toggleCmt(id,btn){const a=document.getElementById(id);const o=a.classList.toggle('open');btn.textContent=o?'✕ 닫기':'💬 코멘트';}
+const AK='$2a$10$n0h9BayoKL/fS6/Ll.PGyuqnwsv6wPh8uTUGxsfREsIwJ9H8Ffw3C';
+const BASE='https://api.jsonbin.io/v3/b';
+const BID='6a2b5cf9da38895dfeb1da5a';
+let C={},S={},M={};
+async function initBin(){try{const r=await fetch(`${BASE}/${BID}/latest`,{headers:{'X-Master-Key':AK}});const d=await r.json();const rec=d.record||{};C=rec.cmtStore||{};S=rec.completeState||{};M=rec.memoStore||{};}catch(e){console.error(e);}restoreUI();}
+function restoreUI(){Object.keys(C).forEach(k=>renderCmts(k));Object.entries(S).forEach(([id,done])=>{if(!done)return;const sec=document.getElementById(id);if(!sec)return;sec.classList.add('completed');const btn=sec.querySelector('.complete-btn');if(btn){btn.textContent='✓ 완료됨';btn.classList.add('done');}});['suyeon','eunji','sienna','antonia','hyebin'].forEach(p=>{const ta=document.getElementById('memo-'+p);if(ta)ta.value=M[p]||'';});}
+async function pushSave(){try{await fetch(`${BASE}/${BID}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':AK},body:JSON.stringify({cmtStore:C,completeState:S,memoStore:M})});}catch(e){console.error(e);}}
+function addCmt(key){const inp=document.getElementById('inp-'+key);const text=inp.value.trim();if(!text)return;if(!C[key])C[key]=[];const now=new Date().toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});C[key].push({text,time:now,replies:[]});inp.value='';pushSave();renderCmts(key);}
+function addReply(key,idx){const inp=document.getElementById('rinp-'+key+'-'+idx);const text=inp.value.trim();if(!text)return;const now=new Date().toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});C[key][idx].replies.push({text,time:now});inp.value='';pushSave();renderCmts(key);}
+function completeSection(id,btn){const sec=document.getElementById(id);if(!sec)return;sec.classList.toggle('completed');const done=sec.classList.contains('completed');btn.textContent=done?'✓ 완료됨':'✓ Complete';btn.classList.toggle('done',done);S[id]=done;pushSave();}
+function saveMemo(p){const ta=document.getElementById('memo-'+p);const sv=document.getElementById('memo-saved-'+p);if(!ta)return;M[p]=ta.value;pushSave();sv.style.display='block';clearTimeout(ta._t);ta._t=setTimeout(()=>sv.style.display='none',1500);}
+function delCmt(key,idx){if(!confirm('코멘트를 삭제할까요?'))return;C[key].splice(idx,1);pushSave();renderCmts(key);}
+function delReply(key,idx,ri){if(!confirm('답글을 삭제할까요?'))return;C[key][idx].replies.splice(ri,1);pushSave();renderCmts(key);}
+function renderCmts(key){const list=document.getElementById('cmt-list-'+key);if(!list)return;list.innerHTML='';(C[key]||[]).forEach((c,i)=>{const replies=(c.replies||[]).map((r,ri)=>`<div class="reply-item"><div class="reply-meta">${r.time} <span class="del-btn" onclick="delReply('${key}',${i},${ri})">✕</span></div>${r.text}</div>`).join('');list.innerHTML+=`<div class="cmt-item"><div class="cmt-meta">${c.time} <span class="del-btn" onclick="delCmt('${key}',${i})">✕ 삭제</span></div><div class="cmt-text">${c.text}</div><div class="reply-wrap">${replies}<div class="reply-inp-row"><input type="text" id="rinp-${key}-${i}" placeholder="답글..."><button onclick="addReply('${key}',${i})">↩</button></div></div></div>`;});}
+window.addEventListener('DOMContentLoaded',()=>initBin());
 </script>
 </body>
 </html>
