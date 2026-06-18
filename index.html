@@ -17,6 +17,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .sep{width:1px;height:18px;background:rgba(255,255,255,.2);}
 .hsub{font-size:11px;color:rgba(255,255,255,.5);}
 .wpill{background:rgba(232,200,64,.15);border:1px solid rgba(232,200,64,.4);color:#f0d060;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+.wk-wrap{position:relative;}
+.wk-btn{background:rgba(232,200,64,.15);border:1px solid rgba(232,200,64,.4);color:#f0d060;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.wk-btn:hover{background:rgba(232,200,64,.25);}
+.wk-btn .arr{font-size:8px;opacity:.7;}
+.wk-drop{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a2d6b;border:1px solid rgba(232,200,64,.3);border-radius:8px;overflow:hidden;z-index:200;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.wk-drop.open{display:block;}
+.wk-item{padding:8px 14px;font-size:11px;color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;}
+.wk-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+.wk-item.cur{color:#f0d060;background:rgba(232,200,64,.1);}
+.wk-item .wk-date{font-size:9px;opacity:.5;}
 .nav{display:flex;gap:3px;}
 .nb{font-family:'Inter',sans-serif;padding:5px 13px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid transparent;background:transparent;color:rgba(255,255,255,.45);transition:all .15s;}
 .nb.on{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.22);}
@@ -171,7 +181,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
     <div class="logo"><div class="logo-bar"></div>Ops Dashboard</div>
     <div class="sep"></div>
     <div class="hsub">NEA Export Operations</div>
-    <div class="wpill">W25 · 2026-06-18</div>
+    <div class="wk-wrap"><button class="wk-btn" onclick="toggleWkDrop(event)">W25 · 2026-06-18 <span class="arr">▼</span></button><div class="wk-drop" id="wk-drop"><a class="wk-item cur" href="index.html">W25 <span class="wk-date">2026-06-18</span></a><a class="wk-item" href="w24.html">W24 <span class="wk-date">2026-06-12</span></a></div></div>
   </div>
   <nav class="nav">
     <button class="nb on" onclick="switchTab('overall',this)">Overall</button>
@@ -320,8 +330,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
     </div>
     <div class="card"><div class="ch"><span class="ct">Snooze & Controllable</span></div>
       <div style="display:flex;gap:16px;margin-bottom:14px">
-        <div><div class="mn c-gn" style="font-size:26px">92%</div><div class="ml">Snoozed (11/12)</div></div>
-        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-yl" style="font-size:26px">1</div><div class="ml">Unsnoozed</div></div>
+        <div><div class="mn c-gn" style="font-size:26px">75%</div><div class="ml">Snoozed (9/12)</div></div>
+        <div style="border-left:1px solid var(--border);padding-left:16px"><div class="mn c-yl" style="font-size:26px">3</div><div class="ml">Unsnoozed</div></div>
       </div>
     </div>
   </div>
@@ -697,6 +707,8 @@ function delCmt(key,idx){if(!confirm('코멘트를 삭제할까요?'))return;C[k
 function delReply(key,idx,ri){if(!confirm('답글을 삭제할까요?'))return;C[key][idx].replies.splice(ri,1);pushSave();renderCmts(key);}
 function renderCmts(key){const list=document.getElementById('cmt-list-'+key);if(!list)return;list.innerHTML='';(C[key]||[]).forEach((c,i)=>{const replies=(c.replies||[]).map((r,ri)=>`<div class="reply-item"><div class="reply-meta">${r.time} <span class="del-btn" onclick="delReply('${key}',${i},${ri})">✕</span></div>${r.text}</div>`).join('');list.innerHTML+=`<div class="cmt-item"><div class="cmt-meta">${c.time} <span class="del-btn" onclick="delCmt('${key}',${i})">✕ 삭제</span></div><div class="cmt-text">${c.text}</div><div class="reply-wrap">${replies}<div class="reply-inp-row"><input type="text" id="rinp-${key}-${i}" placeholder="답글..."><button onclick="addReply('${key}',${i})">↩</button></div></div></div>`;});}
 window.addEventListener('DOMContentLoaded',()=>initBin());
+function toggleWkDrop(e){e.stopPropagation();const d=document.getElementById('wk-drop');d.classList.toggle('open');}
+document.addEventListener('click',()=>{const d=document.getElementById('wk-drop');if(d)d.classList.remove('open');});
 </script>
 </body>
 </html>
